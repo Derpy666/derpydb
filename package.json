@@ -8,5 +8,9 @@
     "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "derpydb-test": "^0.1.5",
+    "discord.js": "^12.4.0"
+  }
 }
