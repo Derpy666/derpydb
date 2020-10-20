@@ -10,7 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "derpydb-test": "^0.1.5",
-    "discord.js": "^12.4.0"
+    "better-sqlite3": "^7.1.1",
+    "discord.js": "^12.4.0",
+    "lodash.get": "^4.4.2",
+    "lodash.set": "^4.3.2",
+    "lodash.unset": "^4.5.2"
   }
 }
