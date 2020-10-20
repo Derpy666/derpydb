@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
 
   if (!args[0])
     return message.reply("You need specific JS Code").then(m => m.delete({ timeout: 5000}));
-  let codein = beautify(args.join(" "), { format: "js" });
+  let codein = args.join(" ");
   resEmbed.fields = [];
   // resEmbed.addField("Input", `\`\`\`js\n${codein}\n\`\`\``, false);
   let code;
