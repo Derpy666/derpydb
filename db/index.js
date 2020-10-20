@@ -1,6 +1,7 @@
 module.exports = (bot, db) => {
 let methods = {
-all: require("./lib/all")
+all: require("./lib/all"),
+set: require("./lib/set")
 }
 
 return {
