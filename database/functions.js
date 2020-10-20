@@ -1,5 +1,4 @@
 const Database = require("better-sqlite3");
-const ejs = require("ejs")
 let db;
 if (!db) db = new Database('db.sqlite');
 
@@ -95,49 +94,6 @@ module.exports = {
   deleteTable: function(key, ops) {
     if (!key) throw new TypeError("No key specified.");
     return arbitrate("deleteTable", { table: key, ops: ops || {} });
-  },
-
-  website: function(password, port) {
-    const express = require("express");
-    const db = require("./index.js");
-    const path = require("path");
-    const { inspect } = require("util");
-
-if(!port) port = 3000
-      const app = express();
-
-      const listener = app.listen(port, () =>
-        console.log("Your app is listening on port " + listener.address().port)
-      );
-
-app
-  .use(require("express").static("public"))
-  .set("view engine", "ejs")
-  .set("views", path.join(__dirname, "views"));
-
-app
-  .use("/api/table", require("./api/table"))
-  .use("/api/action_delete", require("./api/action/delete"))
-  .use("/api/action_edit", require("./api/action/edit"))
-  .use("/api/password", require("./api/password"));
-
-    app.get("/derpyDB/data", (req, res) => {
-  if (req.query) {
-    if (req.query.password) {
-      if (req.query.password == password) {
-        res.render("db", { db, inspect, table: req.query.table || "main", password });
-      } else {
-        res.redirect("/derpyDB/login");
-      }
-    } else {
-      res.redirect("/derpyDB/login");
-    }
-  } else {
-    res.redirect("/derpyDB/login");
-  }
-    });
-
-    app.get("/derpyDB/login", (req, res) => res.render("loginDB", { db, inspect, password }));
   },
 
   version: require("./package.json").version
