@@ -9,6 +9,17 @@ all: function(ops) {
     return arbitrate("all", { ops: ops || {} });
   },
 
+set: function(key, value, ops) {
+    if (!key) throw new TypeError("No key specified.");
+    if (!value && value != 0) throw new TypeError("No value specified.");
+    return arbitrate("set", {
+      stringify: true,
+      id: key,
+      data: value,
+      ops: ops || {}
+    });
+  },
+
 version:"0.0.1"
 }
 
