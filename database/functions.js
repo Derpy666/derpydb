@@ -94,9 +94,7 @@ module.exports = {
   deleteTable: function(key, ops) {
     if (!key) throw new TypeError("No key specified.");
     return arbitrate("deleteTable", { table: key, ops: ops || {} });
-  },
-
-  version: require("./package.json").version
+  }
 };
 
 function arbitrate(method, params) {
