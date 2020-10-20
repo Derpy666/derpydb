@@ -14,9 +14,7 @@ bot.login(config.token);
 bot.commands = new Collection();
 bot.aliases = new Collection();
 
-bot.db = db;
-
-require("./db/index.js")(bot,db)
+bot.db = require("./db/index.js")(bot,db)
 
 process.on("unhandledRejection", error => {
   console.error("Uncaught Promise Rejection", error);
