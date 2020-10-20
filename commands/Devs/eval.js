@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const fetch = require("node-fetch");
-const beautify = require("beautify");
 const secrets = [process.env.TOKEN];
 const replaceSecrets = (str, hid = "Hidden") => {
   secrets.forEach(s => {
@@ -39,7 +38,7 @@ module.exports.run = async (bot, message, args) => {
   const output = `
 \`\`\`js
 /* ${type} */
-${beautify(replaceSecrets(code), { format: "js" })}
+${replaceSecrets(code)}
 \`\`\``;
   if (output.length > 1024) {
     const { key } = await fetch("https://hasteb.in/documents", {
