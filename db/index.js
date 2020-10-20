@@ -1,9 +1,16 @@
 module.exports = (bot, db) => {
 let methods = {
-all: require("./all")
+all: require("./lib/all")
 }
 
-return {version:"0.0.1"}
+return {
+
+all: function(ops) {
+    return arbitrate("all", { ops: ops || {} });
+  },
+
+version:"0.0.1"
+}
 
 function arbitrate(method, params) {
   let options = {
