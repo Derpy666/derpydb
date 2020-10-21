@@ -13,7 +13,7 @@ var methods = {
   deleteAll: require("./lib/deleteAll.js"),
   tables: require("./lib/tables.js"),
   deleteTable: require("./lib/deleteTable.js"),
-  createTable: require("./lib/deleteTable.js")
+  createTable: require("./lib/createTable.js")
 };
 
 return {
@@ -109,7 +109,8 @@ return {
 
   createTable: function(key, callums, ops) {
     if (!key) throw new TypeError("No key specified.");
-    return arbitrate("createTable", { table: key, callums, ops: ops || {} });
+    if (!callums) throw new TypeError("No calllums specified.");
+    return arbitrate("createTable", { table: key, callums: callums, ops: ops || {} });
   }
 };
 
@@ -122,20 +123,6 @@ function arbitrate(method, params) {
 
   if (params.ops.target && params.ops.target[0] === ".")
     params.ops.target = params.ops.target.slice(1);
-  if (params.data && params.data === Infinity)
-    throw new TypeError(
-      `You cannot set Infinity into the database @ ID: ${params.id}`
-    );
-
-  if (params.stringify) {
-    try {
-      params.data = JSON.stringify(params.data);
-    } catch (e) {
-      throw new TypeError(
-        `Please supply a valid input @ ID: ${params.id}\nError: ${e.message}`
-      );
-    }
-  }
 
   if (params.id && params.id.includes(".")) {
     let unparsed = params.id.split(".");
