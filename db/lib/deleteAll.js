@@ -2,15 +2,8 @@ module.exports = function(db, params, options) {
   db.prepare(`DELETE FROM ${options.table}`).run();
 
   let entry = db
-    .prepare(`SELECT * FROM ${options.table} WHERE ID IS NOT NULL`)
+    .prepare(`SELECT * FROM ${options.table}`)
     .all();
-
-  for (var i = 0; i < entry.length; i++) {
-    entry[i].value =
-      typeof JSON.parse(entry[i].value) == "string"
-        ? JSON.parse(JSON.parse(entry[i].value))
-        : JSON.parse(entry[i].value);
-  }
 
   return entry;
 };
