@@ -12,7 +12,8 @@ var methods = {
   getAll: require("./lib/getAll.js"),
   deleteAll: require("./lib/deleteAll.js"),
   tables: require("./lib/tables.js"),
-  deleteTable: require("./lib/deleteTable.js")
+  deleteTable: require("./lib/deleteTable.js"),
+  createTable: require("./lib/deleteTable.js")
 };
 
 return {
@@ -104,6 +105,11 @@ return {
   deleteTable: function(key, ops) {
     if (!key) throw new TypeError("No key specified.");
     return arbitrate("deleteTable", { table: key, ops: ops || {} });
+  },
+
+  createTable: function(key, callums, ops) {
+    if (!key) throw new TypeError("No key specified.");
+    return arbitrate("createTable", { table: key, callums, ops: ops || {} });
   }
 };
 
