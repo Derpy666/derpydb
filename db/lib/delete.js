@@ -17,7 +17,7 @@ entry = JSON.parse(entry);
   if (typeof entry === "object" && params.ops.target) {
     unset(entry, params.ops.target);
     entry = JSON.stringify(entry);
-    db.prepare(`UPDATE ${options.table} SET `${params.ops.target.split(".")[1].join("")}` = (?) WHERE ID = (?)`).run(
+    db.prepare(`UPDATE ${options.table} SET `${params.ops.target}` = (?) WHERE ID = (?)`).run(
       entry,
       params.id
     );
