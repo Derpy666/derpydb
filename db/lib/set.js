@@ -17,12 +17,6 @@ module.exports = function(db, params, options) {
 
 delete entry.id
 
-  entry = JSON.parse(entry);
-
-  try {
-    entry = JSON.parse(entry);
-  } catch (e) {}
-
   if (typeof entry === "object" && params.ops.target) {
     params.data = JSON.parse(params.data);
     params.data = set(entry, params.ops.target, params.data);
@@ -43,11 +37,5 @@ delete entry.id
 delete entry.id
 
   if (entry === "{}") return null;
-  else {
-    entry = JSON.parse(entry);
-    try {
-      entry = JSON.parse(entry);
-    } catch (e) {}
-    return entry;
-  }
+  else return entry;
 };
