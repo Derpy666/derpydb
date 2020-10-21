@@ -6,7 +6,7 @@ module.exports = function(db, params, options) {
     .get(params.id);
 
   if (!entry) {
-    db.prepare(`INSERT INTO ${options.table} (ID,${params.ops.target}) VALUES (?,?)`).run(
+    db.prepare(`INSERT INTO ${options.table} VALUES (?,?)`).run(
       params.id,
       "{}"
     );
