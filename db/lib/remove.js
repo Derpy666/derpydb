@@ -16,7 +16,7 @@ module.exports = function(db, params, options) {
       .get(params.id);
   }
 
-  if (params.ops.target) 
+  if (params.ops.target) {
     delete entry.id
     entry = JSON.parse(entry);
     try {
