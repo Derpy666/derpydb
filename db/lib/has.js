@@ -6,7 +6,10 @@ module.exports = function(db, params, options) {
     .get(params.id);
 
   if (!entry) return false;
-  else entry = JSON.parse(entry.value);
+  else {
+delete entry.id
+entry = JSON.parse(entry);
+}
 
   try {
     entry = JSON.parse(entry);
