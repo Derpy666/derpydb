@@ -25,7 +25,7 @@ delete entry.id
 
   params.data = params.data
 
-  db.prepare(`UPDATE ${options.table} SET ${params.ops.target} = (?) WHERE ID = (?)`).run(
+  db.prepare(`UPDATE ${options.table} SET ${params.ops.target.split(".")[0]} = (?) WHERE ID = (?)`).run(
     params.data,
     params.id
   );
