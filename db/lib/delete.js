@@ -6,7 +6,10 @@ module.exports = function(db, params, options) {
     .get(params.id);
 
   if (!entry) return false;
-  else entry = JSON.parse(entry.value);
+  else {
+delete entry.id
+entry = JSON.parse(entry);
+}
   try {
     entry = JSON.parse(entry);
   } catch (e) {}
@@ -14,13 +17,13 @@ module.exports = function(db, params, options) {
   if (typeof entry === "object" && params.ops.target) {
     unset(entry, params.ops.target);
     entry = JSON.stringify(entry);
-    db.prepare(`UPDATE ${options.table} SET value = (?) WHERE ID = (?)`).run(
+    db.prepare(`UPDATE ${options.table} SET `${params.ops.target.split(".")[1].join("")}` = (?) WHERE ID = (?)`).run(
       entry,
       params.id
     );
     return true;
   } else if (params.ops.target) throw new TypeError("Target is not an object.");
-  else db.prepare(`DELETE FROM ${options.table} WHERE ID = (?)`).run(params.id);
+  else db.prepare(`DELETE FROM ${options.table} WHERE id = (?)`).run(params.id);
 
   return true;
 };
