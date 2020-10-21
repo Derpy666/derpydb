@@ -5,7 +5,7 @@ module.exports = function(db, params, options) {
 
   if (ar.includes(params.table)) return false;
 
-  db.prepare(`CREATE TABLE IF NOT EXISTS ${params.table} (${params.callums})`).run();
+  db.prepare(`CREATE TABLE ${params.table} (${params.callums})`).run();
 
 return true
 
