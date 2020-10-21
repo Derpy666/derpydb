@@ -18,12 +18,12 @@ module.exports = function(db, params, options) {
 delete entry.id
 
   if (typeof entry === "object" && params.ops.target) {
-    params.data = JSON.parse(params.data);
+    params.data = params.data
     params.data = set(entry, params.ops.target, params.data);
   } else if (params.ops.target)
     throw new TypeError("Cannot target a non-object.");
 
-  params.data = JSON.stringify(params.data);
+  params.data = params.data
 
   db.prepare(`UPDATE ${options.table} SET ${params.ops.target} = (?) WHERE ID = (?)`).run(
     params.data,
