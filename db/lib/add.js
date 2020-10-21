@@ -7,7 +7,7 @@ module.exports = function(db, params, options) {
     .get(params.id);
 
   if (!entry) {
-    db.prepare(`INSERT INTO ${options.table} (ID,value) VALUES (?,?)`).run(
+    db.prepare(`INSERT INTO ${options.table} (ID,${params.ops.target}) VALUES (?,?)`).run(
       params.id,
       "{}"
     );
@@ -17,7 +17,8 @@ module.exports = function(db, params, options) {
   }
 
   if (params.ops.target) {
-    entry = JSON.parse(entry.value);
+    delete entry.id
+    entry = JSON.parse(entry);
     try {
       entry = JSON.parse(entry);
     } catch (e) {}
@@ -33,18 +34,18 @@ module.exports = function(db, params, options) {
     if (entry.value === "{}") entry.value = 0;
     else entry.value = JSON.parse(entry.value);
     try {
-      entry.value = JSON.parse(entry);
+      entry = JSON.parse(entry);
     } catch (e) {}
-    if (isNaN(entry.value))
+    if (isNaN(entry))
       throw new Error(
-        `Data @ ID: "${params.id}" IS NOT A number.\nFOUND: ${entry.value}\nEXPECTED: number`
+        `Data @ ID: "${params.id}" IS NOT A number.\nFOUND: ${entry}\nEXPECTED: number`
       );
-    params.data = parseInt(entry.value, 10) + parseInt(params.data, 10);
+    params.data = parseInt(entry, 10) + parseInt(params.data, 10);
   }
 
   params.data = JSON.stringify(params.data);
 
-  db.prepare(`UPDATE ${options.table} SET value = (?) WHERE ID = (?)`).run(
+  db.prepare(`UPDATE ${options.table} SET ${params.ops.target} = (?) WHERE ID = (?)`).run(
     params.data,
     params.id
   );
@@ -54,7 +55,8 @@ module.exports = function(db, params, options) {
 
   entry = db
     .prepare(`SELECT * FROM ${options.table} WHERE ID = (?)`)
-    .get(params.id).value;
+    .get(params.id);
+delete entry.id
   if (entry === "{}") return null;
   else {
     entry = JSON.parse(entry);
