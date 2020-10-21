@@ -118,7 +118,7 @@ function arbitrate(method, params) {
     table: params.ops.table || "main"
   };
 
-  db.prepare(`CREATE TABLE IF NOT EXISTS ${options.table} (id TEXT, value TEXT)`).run();
+
 
   if (params.ops.target && params.ops.target[0] === ".")
     params.ops.target = params.ops.target.slice(1);
