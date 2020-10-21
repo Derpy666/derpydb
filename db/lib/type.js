@@ -7,7 +7,9 @@ module.exports = function(db, params, options) {
 
   if (!entry) return null;
 
-  entry = JSON.parse(entry.value);
+delete entry.id
+
+  entry = JSON.parse(entry);
 
   try {
     entry = JSON.parse(entry);
