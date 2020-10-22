@@ -105,8 +105,8 @@ return {
     return arbitrate("tables", { ops: ops || {} });
   },
 
-  backup: function(download, ops) {
-    return arbitrate("backup", { download: download, ops: ops || {} });
+  backup: function(ops) {
+    return arbitrate("backup", { ops: ops || {} });
   },
 
   top: function(target, num, ops) {
