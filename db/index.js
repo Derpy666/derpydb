@@ -109,7 +109,8 @@ return {
     return arbitrate("backup", { ops: ops || {} });
   },
 
-  download: function(ops) {
+  download: function(data, ops) {
+  if(!date) throw new TypeError("No date specified. (DD-MM-HH-MM-SS)");
     return arbitrate("download", { ops: ops || {} });
   },
 
