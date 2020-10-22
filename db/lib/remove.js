@@ -24,7 +24,7 @@ if(params.ops.target == undefined) return null
     params.data = set(entry, params.ops.target, oldValue - params.data);
  
     if (isNaN(entry[params.ops.target])) throw new Error("Target is not a number.");
-    params.data = parseInt(entry[params.ops.target]), 10) - parseInt(params.data, 10);
+    params.data = parseInt(entry[params.ops.target], 10) - parseInt(params.data, 10);
 
   db.prepare(`UPDATE ${options.table} SET ${params.ops.target} = (?) WHERE ID = (?)`).run(
     params.data,
