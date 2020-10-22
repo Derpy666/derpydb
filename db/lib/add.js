@@ -28,7 +28,6 @@ module.exports = function(db, params, options) {
         `Data @ ID: "${params.id}" IS NOT A number.\nFOUND: ${entry}\nEXPECTED: number`
       );
     params.data = parseInt(entry[params.ops.target], 10) + parseInt(params.data, 10);
-  }
 
   db.prepare(`UPDATE ${options.table} SET ${params.ops.target} = (?) WHERE ID = (?)`).run(
     params.data,
