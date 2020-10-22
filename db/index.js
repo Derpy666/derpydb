@@ -12,6 +12,7 @@ var methods = {
   getAll: require("./lib/getAll.js"),
   deleteAll: require("./lib/deleteAll.js"),
   tables: require("./lib/tables.js"),
+  top: require("./lib/top.js"),
   deleteTable: require("./lib/deleteTable.js"),
   createTable: require("./lib/createTable.js")
 };
@@ -100,6 +101,12 @@ return {
 
   tables: function(ops) {
     return arbitrate("tables", { ops: ops || {} });
+  },
+
+  top: function(target, num, ops) {
+    if (!target) throw new TypeError("No target top specified.");
+    if (!num) throw new TypeError("No top number specified.");
+    return arbitrate("top", { ops: ops || {} });
   },
 
   deleteTable: function(key, ops) {
