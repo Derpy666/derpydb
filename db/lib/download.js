@@ -11,11 +11,11 @@ const fs = require('fs');
 
 const path = `${String(db.name).split(".")[0]}-${params.date}.sqlite`
 
-let file = fs.existsSync("./backups/" + path)
+let file = fs.existsSync("./db/backups/" + path)
 
 if(file === false) return false;
 
-const content = fs.readFileSync("./backups/" + path)
+const content = fs.readFileSync("./db/backups/" + path)
 
 let attch = new Discord.MessageAttachment(content, path)
 
