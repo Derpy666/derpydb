@@ -9,11 +9,11 @@ module.exports = function(db, params, options) {
     db.prepare(`INSERT INTO ${options.table} VALUES (?,?)`).run(
       params.id,
       params.data
-    );*/
+    );
     entry = db
       .prepare(`SELECT * FROM ${options.table} WHERE id = (?)`)
       .get(params.id);
-  }
+  }*/
 
   if (typeof entry === "object" && params.ops.target) {
     params.data = params.data
