@@ -118,7 +118,11 @@ return {
     if (!key) throw new TypeError("No key specified.");
     if (!callums) throw new TypeError("No calllums specified.");
     return arbitrate("createTable", { table: key, callums: callums, ops: ops || {} });
-  }
+  },
+
+  Database: db,
+
+  version: require("../package.json").version
 };
 
 function arbitrate(method, params) {
