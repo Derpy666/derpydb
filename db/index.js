@@ -13,6 +13,7 @@ var methods = {
   deleteAll: require("./lib/deleteAll.js"),
   tables: require("./lib/tables.js"),
   top: require("./lib/top.js"),
+  backup: require("./lib/backup.js"),
   getTable: require("./lib/getTable.js"),
   deleteTable: require("./lib/deleteTable.js"),
   createTable: require("./lib/createTable.js")
@@ -102,6 +103,10 @@ return {
 
   tables: function(ops) {
     return arbitrate("tables", { ops: ops || {} });
+  },
+
+  backup: function(ops) {
+    return arbitrate("backup", { ops: ops || {} });
   },
 
   top: function(target, num, ops) {
