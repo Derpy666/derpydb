@@ -5,17 +5,15 @@ module.exports = function(db, params, options) {
     .prepare(`SELECT * FROM ${options.table} WHERE id = (?)`)
     .get(params.id);
 
-  if (!entry) {
+  /*if (!entry) {
     db.prepare(`INSERT INTO ${options.table} VALUES (?,?)`).run(
       params.id,
       params.data
-    );
+    );*/
     entry = db
       .prepare(`SELECT * FROM ${options.table} WHERE id = (?)`)
       .get(params.id);
   }
-
-delete entry.id
 
   if (typeof entry === "object" && params.ops.target) {
     params.data = params.data
@@ -25,7 +23,7 @@ delete entry.id
 
   params.data = params.data
 
-  db.prepare(`UPDATE ${options.table} SET ${params.ops.target.split(".").shift()} = (?) WHERE ID = (?)`).run(
+  db.prepare(`UPDATE ${options.table} SET ${params.ops.target} = (?) WHERE ID = (?)`).run(
     params.data,
     params.id
   );
@@ -33,8 +31,6 @@ delete entry.id
   entry = db
     .prepare(`SELECT * FROM ${options.table} WHERE ID = (?)`)
     .get(params.id);
-
-delete entry.id
 
   if (entry === "{}") return null;
   else return entry;
