@@ -5,7 +5,7 @@ module.exports = function(db, params, options) {
 
   if(!entry) return null
 
-  let top = db.prepare(`SELECT * FROM ${options.table} ORDER BY (?) DESC LIMIT (?)`).all(params.target, params.num)
+  let top = db.prepare(`SELECT * FROM ${options.table} ORDER BY ${params.target} DESC LIMIT (?)`).all(params.num)
 
 return top;
 };
