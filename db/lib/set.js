@@ -13,13 +13,6 @@ module.exports = function(db, params, options) {
       .get(params.id);
   }
 
-  if (typeof entry === "object" && params.ops.target) {
-    params.data = set(entry, params.ops.target, params.data);
-  } else if (params.ops.target)
-    throw new TypeError("Cannot target a non-object.");
-
-console.log(params.ops.target)
-
   db.prepare(`UPDATE ${options.table} SET ${params.ops.target} = (?) WHERE ID = (?)`).run(
     params.data,
     params.id
