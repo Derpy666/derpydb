@@ -6,14 +6,7 @@ module.exports = function(db, params, options) {
     .get(params.id);
 
   if (!entry) return false;
-  else {
-delete entry.id
-entry = JSON.parse(entry);
-}
-
-  try {
-    entry = JSON.parse(entry);
-  } catch (e) {}
+  if(!params.ops.target) return false
 
   if (params.ops.target) entry = get(entry, params.ops.target);
 
