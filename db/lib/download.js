@@ -9,7 +9,7 @@ function getDate(date) {
 
 const fs = require('fs');
 
-const path = `./backups/${String(db.name).splite(".")[0]}-${params.date}.sqlite`
+const path = `./backups/${String(db.name).split(".")[0]}-${params.date}.sqlite`
 
 let file = fs.existsSync(path)
 
@@ -17,7 +17,7 @@ if(file === false) return false;
 
 const content = fs.readFileSync(path)
 
-let attch = new Discord.MessageAttachment(content, `${String(db.name).splite(".")[0]}-${params.date}.sqlite`)
+let attch = new Discord.MessageAttachment(content, `${String(db.name).split(".")[0]}-${params.date}.sqlite`)
 
 return attch
 
