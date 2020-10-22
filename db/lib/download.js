@@ -9,13 +9,11 @@ function getDate(date) {
 
 const fs = require('fs');
 
-console.log(params.date)
+const path = `./backups/${String(db.name).splite(".")[0]}-${params.date}.sqlite`
 
-let file = fs.existsSync("./backups/db-${params.date}.sqlite")
+let file = fs.existsSync(path)
 
-if(file == false) return false;
-
-const path = `./backups/String(db.name).splite(".")[0]}-${params.date}.sqlite`
+if(file === false) return false;
 
 const content = fs.readFileSync(path)
 
