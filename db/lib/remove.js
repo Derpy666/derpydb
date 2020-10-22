@@ -21,7 +21,6 @@ if(params.ops.target == undefined) return null
     let oldValue = get(entry, params.ops.target);
     if (oldValue === undefined) oldValue = 0;
     else if (isNaN(oldValue)) throw new Error("Target is not a number.");
-    params.data = set(entry, params.ops.target, oldValue - params.data);
  
     if (isNaN(entry[params.ops.target])) throw new Error("Target is not a number.");
     params.data = parseInt(entry[params.ops.target], 10) - parseInt(params.data, 10);
