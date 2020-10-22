@@ -4,17 +4,14 @@ module.exports = function(db, params, options) {
   let entry = db
     .prepare(`SELECT * FROM ${options.table} WHERE id = (?)`).get(params.id)
 
-  /*if (!entry) {
-    db.prepare(`INSERT INTO ${options.table} VALUES (?,?)`).run(
-      params.id,
-      params.data
+  if (!entry) {
+    db.prepare(`INSERT INTO ${options.table} (id) VALUES (?)`).run(
+      params.id
     );
     entry = db
       .prepare(`SELECT * FROM ${options.table} WHERE id = (?)`)
       .get(params.id);
-  }*/
-
-if(!entry) entry = {}
+  }
 
   if (typeof entry === "object" && params.ops.target) {
     params.data = params.data
