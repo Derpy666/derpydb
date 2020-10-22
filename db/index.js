@@ -106,7 +106,7 @@ return {
   top: function(target, num, ops) {
     if (!target) throw new TypeError("No target top specified.");
     if (!num) throw new TypeError("No top number specified.");
-    return arbitrate("top", { ops: ops || {} });
+    return arbitrate("top", { target, num, ops: ops || {} });
   },
 
   deleteTable: function(key, ops) {
