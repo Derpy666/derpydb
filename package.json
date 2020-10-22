@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "better-sqlite3": "^7.1.1",
+    "date-time-format-timezone": "^1.0.22",
     "discord.js": "^12.4.0",
     "dotenv": "^8.2.0",
     "lodash.get": "^4.4.2",
