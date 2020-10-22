@@ -13,6 +13,8 @@ module.exports = function(db, params, options) {
       .get(params.id);
   }
 
+if(params.ops.target == undefined) return null
+
   db.prepare(`UPDATE ${options.table} SET ${params.ops.target} = (?) WHERE ID = (?)`).run(
     params.data,
     params.id
