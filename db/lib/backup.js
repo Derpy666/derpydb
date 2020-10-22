@@ -21,7 +21,7 @@ let attch = new Discord.MessageAttachment(content, `${String(db.name).splite("."
 return attch*/
 
 let path = db.name
-let backup = `${String(db.name).splite(".")[0]}-${getDate(new Date(fixedDate))}.sqlite`
+let backup = `${db.name.split(".")[0]}-${getDate(new Date(fixedDate))}.sqlite`
 
 exec(`copy ${path} ${backup} && move ${backup} backups`)
 
