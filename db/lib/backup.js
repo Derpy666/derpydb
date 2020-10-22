@@ -3,8 +3,6 @@ const { exec } = require("child_process")
 
 module.exports = function(db, params, options) {
 
-let fixedDate = new Intl.DateTimeFormat('en', { timeZone: 'Israel', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric'}).format(Date.now())
-  
 function getDate(date) {
     if(!date) date = new Date() 
     return `${String(date.getMonth()).length == 1 ? `0${date.getMonth()}`: date.getMonth()}-${String(date.getDate()).length == 1 ? `0${date.getDate()}` : date.getDate()}`;
@@ -21,7 +19,7 @@ let attch = new Discord.MessageAttachment(content, `${String(db.name).splite("."
 return attch*/
 
 let path = db.name
-let backup = `${db.name.split(".")[0]}-${getDate(new Date(fixedDate))}.sqlite`
+let backup = `${db.name.split(".")[0]}-${getDate(new Date())}.sqlite`
 
 exec(`copy ${path} ${backup} && move ${backup} backups`)
 
