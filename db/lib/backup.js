@@ -11,7 +11,7 @@ function getDate(date) {
 let path = db.name
 let backup = `${db.name.split(".")[0]}-${getDate(new Date())}.sqlite`
 
-exec(`copy ${path} ${backup} && move ${backup} backups`)
+exec(`copy ${path} ${backup} && move ${backup} db/backups`)
 
 return `New Backup created (/db/backups/${backup})`
 
