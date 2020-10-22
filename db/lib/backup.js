@@ -1,5 +1,5 @@
 const Discord = require("discord.js")
-const { exec } = require("process_child")
+const { exec } = require("child_process")
 
 module.exports = function(db, params, options) {
 
