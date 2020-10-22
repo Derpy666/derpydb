@@ -2,8 +2,7 @@ const set = require("lodash.set");
 
 module.exports = function(db, params, options) {
   let entry = db
-    .prepare(`SELECT * FROM ${options.table} WHERE id = (?)`)
-    .get(params.id);
+    .prepare(`SELECT * FROM ${options.table}`).all()
 
   /*if (!entry) {
     db.prepare(`INSERT INTO ${options.table} VALUES (?,?)`).run(
