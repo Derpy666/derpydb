@@ -23,5 +23,5 @@ module.exports = function(db, params, options) {
     .get(params.id);
 
   if (entry === "{}") return null;
-  else return entry;
+  else return entry[params.ops.target]
 };
