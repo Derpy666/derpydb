@@ -14,6 +14,7 @@ var methods = {
   tables: require("./lib/tables.js"),
   top: require("./lib/top.js"),
   backup: require("./lib/backup.js"),
+  download: require("./lib/download.js"),
   getTable: require("./lib/getTable.js"),
   deleteTable: require("./lib/deleteTable.js"),
   createTable: require("./lib/createTable.js")
