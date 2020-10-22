@@ -9,6 +9,8 @@ function getDate(date) {
 
 const fs = require('fs');
 
+console.log(params.date)
+
 let file = fs.existsSync("./backups/db-${params.date}.sqlite")
 
 if(file == false) return false;
