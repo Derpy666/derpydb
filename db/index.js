@@ -109,6 +109,10 @@ return {
     return arbitrate("backup", { ops: ops || {} });
   },
 
+  download: function(ops) {
+    return arbitrate("download", { ops: ops || {} });
+  },
+
   top: function(target, num, ops) {
     if (!target) throw new TypeError("No target top specified.");
     if (!num) throw new TypeError("No top number specified.");
