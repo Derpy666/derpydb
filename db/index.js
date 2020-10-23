@@ -1,3 +1,4 @@
+module.exports = () => {
 let Database = require("better-sqlite3")
 
 let db = new Database("db.sqlite")
@@ -24,7 +25,7 @@ var methods = {
   createTable: require("./lib/createTable.js")
 };
 
-module.exports = {
+return = {
   get: function(key, ops) {
     if (!key) throw new TypeError("No key specified.");
     return arbitrate("get", { id: key, ops: ops || {} });
@@ -168,5 +169,6 @@ function arbitrate(method, params) {
   }
 
   return methods[method](db, params, options);
+}
 }
 
