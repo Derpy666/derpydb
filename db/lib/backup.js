@@ -11,9 +11,15 @@ function getDate(date) {
 let path = db.name
 let backup = `${db.name.split(".")[0]}-${getDate(new Date())}.sqlite`
 
-let files = fs.readdirSync("./db/backups/")
+let files = fs.readdirSync("./db/backups/").map(file => {
+let stats = fs.statSync(`db/backups/${file}`)
+ 
+   return {name:file,date:stats.mtime}
+}).sort((a,b) => a.date-b.date)
 
-if(files.length >= 8) return `backups folder are full`
+let oldestFile = files[0].name
+
+if(files.length >= 8) return `${oldestFile}`
 
 fs.copyFile(db.name, `db/backups/${backup}`, (err) => {})
 
