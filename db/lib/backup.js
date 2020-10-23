@@ -17,9 +17,12 @@ let backup = `${db.name.split(".")[0]}-${getDate(new Date())}.sqlite`
 
 let files = fs.readdirSync("./db/backups/")
 
+let deleted;
+
 if(files.length >= 8) {
 let oldestFile = files[0]
 deleteFile(`db/backups/${oldestFile}`)
+deleted = `${oldestFile} has been deleted!`
 } 
 
 fs.copyFileSync(db.name, `db/backups/${backup}`)
@@ -27,6 +30,6 @@ fs.copyFileSync(db.name, `db/backups/${backup}`)
 return `New Backup created (/db/backups/${backup})
 
 WARNING: can hold only 8 backups in once, when it reach 8 it will delete the oldest backup
-
+${deleted ? `\n${deleted}\n` : ""}
 Currect Space: (${1 + files.length}/8)`
 };
