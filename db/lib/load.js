@@ -30,7 +30,7 @@ fs.copyFileSync(`db/backups/${path}`, db.name)
 
 deleteFile(`db/backups/${path}`)
 
-require("better-sqlite3")(`../../${db.name}`)
+new require("better-sqlite3")(db.name)
 
 return true
 };
