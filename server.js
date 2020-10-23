@@ -7,14 +7,12 @@ let config = require("./config")
 bot.config = config;
 bot.prefix = config.prefix
 
-let db = new Database("db.sqlite")
-
 bot.login(config.token);
 
 bot.commands = new Collection();
 bot.aliases = new Collection();
 
-bot.db = require("./db/index.js")(bot,db)
+bot.db = require("./db/index.js")
 
 process.on("unhandledRejection", error => {
   console.error("Uncaught Promise Rejection", error);
