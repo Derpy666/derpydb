@@ -13,7 +13,7 @@ let backup = `${db.name.split(".")[0]}-${getDate(new Date())}.sqlite`
 
 let files = fs.readdirSync("./db/backups/")
 
-if(1 + files.length == 8) return `backups folder are full`
+if(files.length >= 8) return `backups folder are full`
 
 fs.copyFile(db.name, `db/backups/${backup}`, (err) => {})
 
