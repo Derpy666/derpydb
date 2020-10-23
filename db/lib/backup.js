@@ -8,6 +8,10 @@ function getDate(date) {
     return `${String(date.getMonth()).length == 1 ? `0${date.getMonth()}`: date.getMonth()}-${String(date.getDate()).length == 1 ? `0${date.getDate()}` : date.getDate()}-${String(date.getHours()).length == 1 ? `0${date.getHours()}` : date.getHours()}-${String(date.getMinutes()).length == 1 ? `0${date.getMinutes()}` : date.getMinutes()}-${String(date.getSeconds()).length == 1 ? `0${date.getSeconds()}` : date.getSeconds()}`;
   }
 
+function deleteFile(file) {
+return fs.unlinkSync(file)
+}
+
 let path = db.name
 let backup = `${db.name.split(".")[0]}-${getDate(new Date())}.sqlite`
 
@@ -15,10 +19,10 @@ let files = fs.readdirSync("./db/backups/")
 
 if(files.length >= 8) {
 let oldestFile = files[0]
-fs.unlinkSync(`db/backups/${oldestFile}.sqlite`, (err) => {})
+deleteFile(`db/backups/${oldestFile}`)
 } 
 
-fs.copyFileSync(db.name, `db/backups/${backup}`, (err) => {})
+fs.copyFileSync(db.name, `db/backups/${backup}`)
 
 return `New Backup created (/db/backups/${backup})
 
