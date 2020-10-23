@@ -25,7 +25,7 @@ var methods = {
   createTable: require("./lib/createTable.js")
 };
 
-return = {
+return {
   get: function(key, ops) {
     if (!key) throw new TypeError("No key specified.");
     return arbitrate("get", { id: key, ops: ops || {} });
