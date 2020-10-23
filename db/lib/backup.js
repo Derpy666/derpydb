@@ -13,6 +13,12 @@ let backup = `${db.name.split(".")[0]}-${getDate(new Date())}.sqlite`
 
 fs.copyFile(db.name, `db/backups/${backup}`, (err) => {})
 
-return `New Backup created (/db/backups/${backup})`
+let files = fs.readdirSync("./db/backups/")
 
+if(files.length == 8) return `backups folder are full`
+
+return `New Backup created (/db/backups/${backup})
+
+WARNING: can hold only 8 backups in once, when it reach 8 it will delete the oldest backup
+Currect Space: (${files.length}/8)`
 };
