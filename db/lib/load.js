@@ -28,8 +28,12 @@ deleteFile(`db/backups/${path}`)
 
 fs.copyFileSync(db.name, `db/backups/${backup}`)
 
+db.close()
+
 deleteFile(db.name)
 fs.renameAsync(`old-${db.name}`, db.name)
+
+db.open()
 
 return true
 };
