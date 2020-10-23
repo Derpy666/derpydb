@@ -11,14 +11,10 @@ function getDate(date) {
 let path = db.name
 let backup = `${db.name.split(".")[0]}-${getDate(new Date())}.sqlite`
 
-let files = fs.readdirSync("./db/backups/").map(file => {
-let stats = fs.statSync(`db/backups/${file}`)
- 
-   return {name:file,date:stats.mtime}
-}).sort((a,b) => a.date-b.date)
+let files = fs.readdirSync("./db/backups/")
 
 if(files.length >= 8) {
-let oldestFile = files[0].name
+let oldestFile = files[0]
 fs.unlink(`db/backups/${oldestFile}.sqlite`, (err) => {})
 }
 
