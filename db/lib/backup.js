@@ -15,11 +15,11 @@ let files = fs.readdirSync("./db/backups/")
 
 if(files.length >= 8) {
 let oldestFile = files[0]
-fs.unlink(`db/backups/${oldestFile}.sqlite`, (err) => {})
-fs.copyFile(db.name, `db/backups/${backup}`, (err) => {})
-} else {
-fs.copyFile(db.name, `db/backups/${backup}`, (err) => {})
-}
+fs.unlinkSync(`db/backups/${oldestFile}.sqlite`, (err) => {})
+} 
+
+fs.copyFileSync(db.name, `db/backups/${backup}`, (err) => {})
+
 return `New Backup created (/db/backups/${backup})
 
 WARNING: can hold only 8 backups in once, when it reach 8 it will delete the oldest backup
