@@ -20,18 +20,15 @@ if(file === false) return false;
 
 let backup = `${db.name.split(".")[0]}-${getDate(new Date())}.sqlite`
 
-let files = fs.readdirSync("./db/backups/")
-
-fs.copyFileSync(`db/backups/${path}`, `old-${db.name}`)
-
-deleteFile(`db/backups/${path}`)
-
 fs.copyFileSync(db.name, `db/backups/${backup}`)
 
 db.close()
 
 deleteFile(db.name)
-fs.rename(`old-${db.name}`, db.name)
+
+fs.copyFileSync(`db/backups/${path}`, db.name)
+
+deleteFile(`db/backups/${path}`)
 
 require("better-sqlite3")(`../../${db.name}`)
 
