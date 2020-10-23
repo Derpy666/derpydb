@@ -15,6 +15,7 @@ var methods = {
   top: require("./lib/top.js"),
   backup: require("./lib/backup.js"),
   download: require("./lib/download.js"),
+  load: require("./lib/load.js"),
   getTable: require("./lib/getTable.js"),
   deleteTable: require("./lib/deleteTable.js"),
   createTable: require("./lib/createTable.js")
@@ -113,6 +114,11 @@ return {
   download: function(date, ops) {
   if(!date) throw new TypeError("No date specified. (DD-MM-HH-MM-SS)");
     return arbitrate("download", { date: date, ops: ops || {} });
+  },
+
+  load: function(date, ops) {
+  if(!date) throw new TypeError("No date specified. (DD-MM-HH-MM-SS)");
+    return arbitrate("load", { date: date, ops: ops || {} });
   },
 
   top: function(target, num, ops) {
