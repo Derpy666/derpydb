@@ -11,7 +11,7 @@ function getDate(date) {
 let path = db.name
 let backup = `${db.name.split(".")[0]}-${getDate(new Date())}.sqlite`
 
-fs.copyFile(db.name, `db/backups/${backups}`)
+fs.copyFile(db.name, `db/backups/${backups}`, (err) => if(err) console.error(err))
 
 return `New Backup created (/db/backups/${backup})`
 
