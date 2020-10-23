@@ -15,10 +15,10 @@ fs.copyFile(db.name, `db/backups/${backup}`, (err) => {})
 
 let files = fs.readdirSync("./db/backups/")
 
-if(files.length == 8) return `backups folder are full`
+if(1 + files.length == 8) return `backups folder are full`
 
 return `New Backup created (/db/backups/${backup})
 
 WARNING: can hold only 8 backups in once, when it reach 8 it will delete the oldest backup
-Currect Space: (${files.length}/8)`
+Currect Space: (${1 + files.length}/8)`
 };
