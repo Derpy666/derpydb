@@ -17,16 +17,16 @@ let stats = fs.statSync(`db/backups/${file}`)
    return {name:file,date:stats.mtime}
 }).sort((a,b) => a.date-b.date)
 
-if(files.length !== 0) {
+if(files.length >= 8) {
 let oldestFile = files[0].name
+fs.unlink(`db/backups/${oldestFile}.sqlite`, (err) => {})
 }
-
-if(files.length >= 8) fs.unlink(`db/backups/${oldestFile}.sqlite`, (err) => {})
 
 fs.copyFile(db.name, `db/backups/${backup}`, (err) => {})
 
 return `New Backup created (/db/backups/${backup})
 
 WARNING: can hold only 8 backups in once, when it reach 8 it will delete the oldest backup
+
 Currect Space: (${1 + files.length}/8)`
 };
