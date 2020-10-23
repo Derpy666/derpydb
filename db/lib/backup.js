@@ -17,7 +17,9 @@ let stats = fs.statSync(`db/backups/${file}`)
    return {name:file,date:stats.mtime}
 }).sort((a,b) => a.date-b.date)
 
+if(files.length !== 0) {
 let oldestFile = files[0].name
+}
 
 if(files.length >= 8) fs.unlink(`db/backups/${oldestFile}.sqlite`, (err) => {})
 
