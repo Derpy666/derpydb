@@ -1,5 +1,5 @@
 const Discord = require("discord.js")
-const { exec } = require("child_process")
+const fs = require("fs")
 
 module.exports = function(db, params, options) {
 
@@ -11,7 +11,7 @@ function getDate(date) {
 let path = db.name
 let backup = `${db.name.split(".")[0]}-${getDate(new Date())}.sqlite`
 
-exec(`copy ${path} ${backup} && move ${backup} db/backups`)
+fs.copyFile(db.name, `db/backups/${backups}`)
 
 return `New Backup created (/db/backups/${backup})`
 
