@@ -33,7 +33,7 @@ db.close()
 deleteFile(db.name)
 fs.rename(`old-${db.name}`, db.name)
 
-new db.Database(`../../${db.name}`)
+require("better-sqlite3")(`../../${db.name}`)
 
 return true
 };
