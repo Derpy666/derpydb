@@ -19,7 +19,7 @@ let stats = fs.statSync(`db/backups/${file}`)
 
 let oldestFile = files[0].name
 
-if(files.length >= 8) return `${oldestFile}`
+if(files.length >= 8) fs.unlink(`db/backups/${oldestFile}.sqlite`, (err) => {})
 
 fs.copyFile(db.name, `db/backups/${backup}`, (err) => {})
 
