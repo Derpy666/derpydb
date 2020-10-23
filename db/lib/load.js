@@ -22,7 +22,7 @@ let backup = `${db.name.split(".")[0]}-${getDate(new Date())}.sqlite`
 
 let files = fs.readdirSync("./db/backups/")
 
-fs.copyFileSync(path, `old-${db.name}`)
+fs.copyFileSync(`db/backups/${path}`, `old-${db.name}`)
 
 let deleted;
 
