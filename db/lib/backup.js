@@ -27,9 +27,9 @@ deleted = `${oldestFile} has been deleted!`
 
 fs.copyFileSync(db.name, `db/backups/${backup}`)
 
-throw (`New Backup created (/db/backups/${backup})
+return `New Backup created (/db/backups/${backup})
 
 WARNING: can hold only 8 backups in once, when it reach 8 it will delete the oldest backup
 ${deleted ? `\n${deleted}\n` : ""}
-Currect Space: (${deleted ? files.length : 1 + files.length}/8)`)
+Currect Space: (${deleted ? files.length : 1 + files.length}/8)`
 };
