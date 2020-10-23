@@ -33,7 +33,7 @@ db.close()
 deleteFile(db.name)
 fs.rename(`old-${db.name}`, db.name)
 
-db.open()
+new db.Database(`../../${db.name}`)
 
 return true
 };
