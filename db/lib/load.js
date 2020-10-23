@@ -24,24 +24,12 @@ let files = fs.readdirSync("./db/backups/")
 
 fs.copyFileSync(`db/backups/${path}`, `old-${db.name}`)
 
-let deleted;
-
-if(files.length >= 8) {
-let oldestFile = files[0]
 deleteFile(`db/backups/${path}`)
-deleteFile(`db/backups/${oldestFile}`)
-deleted = `${oldestFile} has been deleted!`
-} 
 
 fs.copyFileSync(db.name, `db/backups/${backup}`)
 
 deleteFile(db.name)
 fs.renameAsync(`old-${db.name}`, db.name)
-
-console.log(`New Backup created (/db/backups/${backup})
-WARNING: can hold only 8 backups in once, when it reach 8 it will delete the oldest backup
-${deleted ? `\n${deleted}\n` : ""}
-Current Space: (${deleted ? files.length : 1 + files.length}/8)`)
 
 return true
 };
