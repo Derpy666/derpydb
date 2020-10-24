@@ -7,7 +7,7 @@ module.exports = function(db, params, options) {
 
 let arr = Object.keys(params.ops)
 arr = arr.filter(x => x !== "table")
-ket callums = arr.map(x => {
+let callums = arr.map(x => {
 return `${x} ${params.ops[x].toUpperCase()}`
 }).join(", ")
 
