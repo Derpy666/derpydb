@@ -3,17 +3,34 @@ module.exports = function(db, params, options) {
 
   let ar = entry.map(table => table.name);
 
-  if (!ar.includes(params.table)) return false;
+  if (!ar.includes(params.ops.table)) return false;
 
-let stmt = db.prepare(`SELECT * FROM ${params.table}`);
+let stmt = db.prepare(`SELECT * FROM ${params.ops.table}`);
+
+!eval db = bot.db.Database
+
+let stmt = db.prepare(`SELECT * FROM x`);
+
+let clm = stmt.columns()
+
+let obj = {}
+
+obj.table = clm[0].table
+
+let clms = clm.map(c => {
+obj[c.name] = c.type
+ return obj
+})
+
 
 let clm = stmt.columns();
 
-let clms = clm.map(c => {
- return `(${c.name} ${c.type})`
-}).join(", ");
+let obj = { table: clm[0].table }
 
-let obj = { table: clm[0].table, columns: clms }
+let clms = clm.map(c => {
+obj[c.name] = c.type
+ return obj
+})
 
 return obj;
 };
