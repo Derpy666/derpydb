@@ -155,6 +155,7 @@ module.exports = {
     if(!p) throw new TypeError("No path specified.");
     db.close()
     db = new Database(p)
+    this.db = db
     return db
   },
 
