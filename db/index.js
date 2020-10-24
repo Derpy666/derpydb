@@ -1,6 +1,8 @@
-module.exports = (db) => {
+module.exports = () => {
 
 let Database = require("better-sqlite3")
+
+let db = Database("db.sqlite")
 
 var methods = {
   get: require("./lib/get.js"),
