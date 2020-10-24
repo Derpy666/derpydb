@@ -1,7 +1,7 @@
 const { Client, Collection, MessageEmbed } = require("discord.js");
 const { readdirSync } = require("fs");
 const Database = require("better-sqlite3")
-let db = new Database("db.sqlite")
+// let db = new Database("db.sqlite")
 const bot = new Client()
 
 let config = require("./config")
@@ -13,7 +13,7 @@ bot.login(config.token);
 bot.commands = new Collection();
 bot.aliases = new Collection();
 
-bot.db = require("./db/index.js")(db)
+bot.db = require("./db/index.js")
 
 process.on("unhandledRejection", error => {
   console.error("Uncaught Promise Rejection", error);
