@@ -136,7 +136,7 @@ return {
   },
 
   getTable: function(ops) {
-    return arbitrate("getTable", { table: key, ops: ops || {} });
+    return arbitrate("getTable", { ops: ops || {} });
   },
 
   createTable: function(key, callums, ops) {
