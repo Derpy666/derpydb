@@ -2,6 +2,8 @@ module.exports = function(db, params, options) {
   
 const Database = require("better-sqlite3")
 
-require("../../db/index.js")(new Database(params.path))
+db = new Database(params.path)
+
+return require("../index.js")(db)
 
 };
