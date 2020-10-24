@@ -26,15 +26,15 @@ let DatabaseName = db.name
 
 db.close()
 
-deleteFile(DatabaseName)
+deleteFile("db.sqlite")
 
-fs.copyFileSync(`db/backups/${path}`, DatabaseName)
+fs.copyFileSync(`db/backups/${path}`, "db.sqlite")
 
 deleteFile(`db/backups/${path}`)
 
 let Database = require("better-sqlite3")
 
-db = Database(`${DatabaseName}`)
+db = Database(`db.sqlite`)
 
 return true
 };
