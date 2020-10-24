@@ -2,8 +2,6 @@ module.exports = (db) => {
 
 let Database = require("better-sqlite3")
 
-if(!db) return Database.SqliteError("run '.use' for start use the database", null).toString()
-
 var methods = {
   get: require("./lib/get.js"),
   set: require("./lib/set.js"),
@@ -160,7 +158,7 @@ function arbitrate(method, params) {
     table: params.ops.table || "main"
   };
 
-
+if(!db && method !== "use") return Database.SqliteError("run '.use' for start use the database", null).toString()
 
   if (params.ops.target && params.ops.target[0] === ".")
     params.ops.target = params.ops.target.slice(1);
