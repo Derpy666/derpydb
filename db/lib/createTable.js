@@ -3,9 +3,15 @@ module.exports = function(db, params, options) {
 
   let ar = entry.map(table => table.name);
 
-  if (ar.includes(params.table)) return false;
+  if (ar.includes(params.ops.table)) return false;
 
-  db.prepare(`CREATE TABLE ${params.table} (${params.callums})`).run();
+let arr = Object.keys(params.ops)
+arr = arr.filter(x => x !== "table")
+ket callums = arr.map(x => {
+return `${x} ${params.ops[x].toUpperCase()}`
+}).join(", ")
+
+  db.prepare(`CREATE TABLE ${params.ops.table} (${callums})`).run();
 
 return true
 
