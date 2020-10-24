@@ -7,22 +7,6 @@ module.exports = function(db, params, options) {
 
 let stmt = db.prepare(`SELECT * FROM ${params.ops.table}`);
 
-!eval db = bot.db.Database
-
-let stmt = db.prepare(`SELECT * FROM x`);
-
-let clm = stmt.columns()
-
-let obj = {}
-
-obj.table = clm[0].table
-
-let clms = clm.map(c => {
-obj[c.name] = c.type
- return obj
-})
-
-
 let clm = stmt.columns();
 
 let obj = { table: clm[0].table }
