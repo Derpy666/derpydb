@@ -26,11 +26,8 @@ module.exports = function(db, params, options) {
     oldArray.push(params.data);
     params.data = set(entry, params.ops.target, oldArray)
 
-console.log(oldArray)
-console.log(params.data)
-
   db.prepare(`UPDATE ${options.table} SET ${params.ops.target} = (?) WHERE ID = (?)`).run(
-    params.data,
+    params.data[params.ops.target],
     params.id
   );
 
