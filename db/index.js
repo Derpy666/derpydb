@@ -1,4 +1,4 @@
-module.exports = (db) => {
+module.exports = () => {
 
 let Database = require("better-sqlite3")
 
@@ -24,7 +24,6 @@ var methods = {
   load: require("./lib/load.js"),
   getTable: require("./lib/getTable.js"),
   deleteTable: require("./lib/deleteTable.js"),
-  use: require("./lib/use.js"),
   createTable: require("./lib/createTable.js")
 };
 
@@ -152,7 +151,9 @@ return {
 
   use: function(p, ops) {
     if(!p) throw new TypeError("No path specified.");
-    return arbitrate("use", { path: p, ops: ops || {} });
+    db.close()
+    db = new Database(p)
+    return db
   },
 
   Database: db,
