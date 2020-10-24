@@ -1,5 +1,9 @@
 module.exports = (db) => {
 
+let Database = require("better-sqlite3")
+
+if(!db) return Database.SqliteError("test1", "test2")
+
 var methods = {
   get: require("./lib/get.js"),
   set: require("./lib/set.js"),
