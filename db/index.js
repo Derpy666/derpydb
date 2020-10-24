@@ -143,8 +143,9 @@ return {
     return arbitrate("createTable", { ops: ops || {} });
   },
 
-  use: function(ops) {
-    return arbitrate("use", { ops: ops || {} });
+  use: function(path, ops) {
+    if(!path) throw new TypeError("No path specified.");
+    return arbitrate("use", { path: path, ops: ops || {} });
   },
 
   Database: db,
