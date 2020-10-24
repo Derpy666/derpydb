@@ -13,6 +13,8 @@ let callums = arr.map(x => {
 return `${x} ${params.ops[x].toUpperCase()}`
 }).join(", ")
 
+if(arr.length == 0) return false
+
   db.prepare(`CREATE TABLE ${params.ops.table} (${callums})`).run();
 
 return true
