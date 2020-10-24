@@ -151,10 +151,7 @@ module.exports = {
 
   use: function(p, ops) {
     if(!p) throw new TypeError("No path specified.");
-    db.close()
-    db = new Database(p)
-    this.db = db
-    return db
+    return arbitrate("use", { path: p, ops: ops || {} });
   },
 
   Database: db,
