@@ -188,7 +188,7 @@ const util = require('util');
 let db;
 
 // Create Database Under Conditions
-if (!db) db = new Database('./db.sqlite');
+if (!db) db = new Database('db.sqlite');
 const fs = require("fs")
 // Declare Methods
 let dboptions = {
@@ -197,15 +197,15 @@ let dboptions = {
   table: "main"
 }
 var methods = {
-  fetch: require('../lib/fetch.js'),
-  set: require('../lib/set.js'),
-  add: require('../lib/add.js'),
-  subtract: require('../lib/subtract.js'),
-  push: require('../lib/push.js'),
-  delete: require('../lib/delete.js'),
-  has: require('../lib/has.js'),
-  all: require('../lib/all.js'),
-  type: require('../lib/type')
+  fetch: require('./lib/get.js'),
+  set: require('./lib/set.js'),
+  add: require('./lib/add.js'),
+  subtract: require('./lib/remove.js'),
+  push: require('./lib/push.js'),
+  delete: require('./lib/delete.js'),
+  has: require('./lib/has.js'),
+  all: require('./lib/all.js'),
+  type: require('./lib/type')
 };
 module.exports = { 
 
