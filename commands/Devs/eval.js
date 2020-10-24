@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const fetch = require("node-fetch");
+const Database = require("better-sqlite3")
 const secrets = [process.env.TOKEN];
 const replaceSecrets = (str, hid = "Hidden") => {
   secrets.forEach(s => {
