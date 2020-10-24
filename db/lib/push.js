@@ -15,7 +15,7 @@ module.exports = function(db, params, options) {
       .get(params.id);
   }
 
-  if(!paramz.ops.target) return null
+  if(!params.ops.target) return null
 
     if (typeof entry[params.ops.target] !== "object")
       throw new TypeError("Cannot push into a non-object.");
@@ -25,12 +25,6 @@ module.exports = function(db, params, options) {
       throw new TypeError("Target is not an array.");
     oldArray.push(params.data);
     params.data = set(entry, params.ops.target, oldArray);
-  } else {
-    if (!Array.isArray(entry[params.ops.target]))
-      throw new TypeError("Target is not an array.");
-    entry[params.ops.target].push(params.data);
-    params.data = entry[params.ops.target];
-  }
 
   db.prepare(`UPDATE ${options.table} SET ${params.ops.target} = (?) WHERE ID = (?)`).run(
     params.data,
