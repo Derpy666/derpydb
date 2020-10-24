@@ -20,7 +20,7 @@ module.exports = function(db, params, options) {
     if (typeof entry[params.ops.target] !== "object")
       throw new TypeError("Cannot push into a non-object.");
     let oldArray = entry[params.ops.target]
-    if (oldArray === undefined) oldArray = [];
+    if (oldArray === null) oldArray = [];
     else if (!Array.isArray(oldArray))
       throw new TypeError("Target is not an array.");
     oldArray.push(params.data);
