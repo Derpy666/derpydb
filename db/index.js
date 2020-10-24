@@ -22,6 +22,7 @@ var methods = {
   load: require("./lib/load.js"),
   getTable: require("./lib/getTable.js"),
   deleteTable: require("./lib/deleteTable.js"),
+  use: require("./lib/use.js"),
   createTable: require("./lib/createTable.js")
 };
 
