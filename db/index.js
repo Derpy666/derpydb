@@ -2,7 +2,7 @@ module.exports = () => {
 
 let Database = require("better-sqlite3")
 
-let db = Database("db.sqlite", {verboost: console.log})
+let db = Database("db.sqlite", {verbose: console.log})
 
 var methods = {
   get: require("./lib/get.js"),
