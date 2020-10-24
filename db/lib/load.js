@@ -34,7 +34,7 @@ deleteFile(`db/backups/${path}`)
 
 let Database = require("better-sqlite3")
 
-new Database(`./${DatabaseName}`)
+db = Database(`${DatabaseName}`)
 
 return true
 };
