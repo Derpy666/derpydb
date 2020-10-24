@@ -20,8 +20,11 @@ module.exports = function(db, params, options) {
     if (typeof entry[params.ops.target] !== "object")
       throw new TypeError("Cannot push into a non-object.");
     let oldArray = entry[params.ops.target]
-    if (oldArray === null) oldArray = [];
-    else if (!Array.isArray(oldArray))
+    if (oldArray === null) {
+    db.prepare(`INSERT INTO ${options.table} (${params.ops.target}) VALUES (?)`).run([])
+
+    oldArray = db.prepare(`SELECT * FROM ${options.table} WHERE id = (?)`).get(params.id)[params.ops.target]
+    } else if (!Array.isArray(oldArray))
       throw new TypeError("Target is not an array.");
     oldArray.push(params.data);
     params.data = set(entry, params.ops.target, oldArray)
