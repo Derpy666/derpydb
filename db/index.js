@@ -131,13 +131,11 @@ return {
     return arbitrate("top", { target: target, num: num, ops: ops || {} });
   },
 
-  deleteTable: function(key, ops) {
-    if (!key) throw new TypeError("No key specified.");
-    return arbitrate("deleteTable", { table: key, ops: ops || {} });
+  deleteTable: function(ops) {
+    return arbitrate("deleteTable", { ops: ops || {} });
   },
 
-  getTable: function(key, ops) {
-    if (!key) throw new TypeError("No key specified.");
+  getTable: function(ops) {
     return arbitrate("getTable", { table: key, ops: ops || {} });
   },
 
