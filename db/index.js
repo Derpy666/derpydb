@@ -2,6 +2,8 @@ module.exports = () => {
 
 let Database = require("better-sqlite3")
 
+let db;
+
 if(!db) db = Database("db.sqlite")
 
 var methods = {
