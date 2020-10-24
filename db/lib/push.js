@@ -7,23 +7,17 @@ module.exports = function(db, params, options) {
     .get(params.id);
 
   if (!entry) {
-    db.prepare(`INSERT INTO ${options.table} (ID,${params.ops.target}) VALUES (?,?)`).run(
-      params.id,
-      "{}"
+    db.prepare(`INSERT INTO ${options.table} (id) VALUES (?)`).run(
+      params.id
     );
     entry = db
       .prepare(`SELECT * FROM ${options.table} WHERE id = (?)`)
       .get(params.id);
   }
 
-  if (params.ops.target) {
-    delete entry.id
-    entry = JSON.parse(entry);
-    try {
-      entry = JSON.parse(entry);
-    } catch (e) {}
-    params.data = JSON.parse(params.data);
-    if (typeof entry !== "object")
+  if(!paramz.ops.target) return null
+
+    if (typeof entry[params.ops.target] !== "object")
       throw new TypeError("Cannot push into a non-object.");
     let oldArray = get(entry, params.ops.target);
     if (oldArray === undefined) oldArray = [];
@@ -32,19 +26,11 @@ module.exports = function(db, params, options) {
     oldArray.push(params.data);
     params.data = set(entry, params.ops.target, oldArray);
   } else {
-    if (entry === "{}") entry = [];
-    else entry = JSON.parse(entry);
-    try {
-      entry = JSON.parse(entry);
-    } catch (e) {}
-    params.data = JSON.parse(params.data);
-    if (!Array.isArray(entry))
+    if (!Array.isArray(entry[params.ops.target]))
       throw new TypeError("Target is not an array.");
-    entry.push(params.data);
-    params.data = entry;
+    entry[params.ops.target].push(params.data);
+    params.data = entry[params.ops.target];
   }
-
-  params.data = JSON.stringify(params.data);
 
   db.prepare(`UPDATE ${options.table} SET ${params.ops.target} = (?) WHERE ID = (?)`).run(
     params.data,
@@ -54,13 +40,7 @@ module.exports = function(db, params, options) {
   entry = db
     .prepare(`SELECT * FROM ${options.table} WHERE ID = (?)`)
     .get(params.id);
-delete entry.id
-  if (entry === "{}") return null;
-  else {
-    entry = JSON.parse(entry);
-    try {
-      entry = JSON.parse(entry);
-    } catch (e) {}
+
+  if (entry[params.ops.target] === "{}") return null;
     return entry;
-  }
 };
