@@ -19,6 +19,7 @@ var methods = {
   tables: require("./lib/tables.js"),
   top: require("./lib/top.js"),
   backup: require("./lib/backup.js"),
+  backups: require("./lib/backups.js"),
   download: require("./lib/download.js"),
   load: require("./lib/load.js"),
   getTable: require("./lib/getTable.js"),
@@ -115,6 +116,10 @@ return {
 
   backup: function(ops) {
     return arbitrate("backup", { ops: ops || {} });
+  },
+
+  backups: function(ops) {
+    return arbitrate("backups", { ops: ops || {} });
   },
 
   download: function(date, ops) {
