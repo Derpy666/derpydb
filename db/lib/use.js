@@ -6,6 +6,6 @@ db.close()
 
 db = new Database(params.path)
 
-return db
+return require("../../db/index.js")(db)
 
 };
