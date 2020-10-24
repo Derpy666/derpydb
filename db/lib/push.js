@@ -24,7 +24,7 @@ module.exports = function(db, params, options) {
     else if (!Array.isArray(oldArray))
       throw new TypeError("Target is not an array.");
     oldArray.push(params.data);
-    params.data = set(entry, params.ops.target, oldArray
+    params.data = set(entry, params.ops.target, oldArray)
 
 console.log(oldArray)
 console.log(params.data)
