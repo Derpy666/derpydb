@@ -4,6 +4,6 @@ const Database = require("better-sqlite3")
 
 db = new Database(params.path)
 
-require("../index.js")(db)
+require("../../db/index.js")(db)
 
 };
