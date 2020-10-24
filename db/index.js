@@ -139,10 +139,8 @@ return {
     return arbitrate("getTable", { ops: ops || {} });
   },
 
-  createTable: function(key, callums, ops) {
-    if (!key) throw new TypeError("No key specified.");
-    if (!callums) throw new TypeError("No calllums specified.");
-    return arbitrate("createTable", { table: key, callums: callums, ops: ops || {} });
+  createTable: function(ops) {
+    return arbitrate("createTable", { ops: ops || {} });
   },
 
   Database: db,
