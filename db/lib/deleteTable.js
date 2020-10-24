@@ -3,9 +3,9 @@ module.exports = function(db, params, options) {
 
   let ar = entry.map(table => table.name);
 
-  if (!ar.includes(params.table)) return false;
+  if (!ar.includes(params.ops.table)) return false;
 
-  db.prepare(`DROP TABLE ${params.table}`).run();
+  db.prepare(`DROP TABLE ${params.ops.table}`).run();
 
   return true;
 };
