@@ -3,6 +3,8 @@ module.exports = function(db, params, options) {
 
   let ar = entry.map(table => table.name);
 
+if(!params.ops) return false
+
   if (ar.includes(params.ops.table)) return false;
 
 let arr = Object.keys(params.ops)
