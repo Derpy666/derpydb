@@ -158,7 +158,7 @@ function arbitrate(method, params) {
     table: params.ops.table || "main"
   };
 
-if(!db && method !== "use") return Database.SqliteError("run '.use' for start use the database", null).toString()
+if(!db && method !== "use") return Database.SqliteError("run '.use' for start use the database", "error").toString()
 
   if (params.ops.target && params.ops.target[0] === ".")
     params.ops.target = params.ops.target.slice(1);
