@@ -143,6 +143,10 @@ return {
     return arbitrate("createTable", { ops: ops || {} });
   },
 
+  use: function(ops) {
+    return arbitrate("use", { ops: ops || {} });
+  },
+
   Database: db,
 
   version: require("../package.json").version
