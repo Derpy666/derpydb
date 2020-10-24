@@ -2,7 +2,7 @@ module.exports = (db) => {
 
 let Database = require("better-sqlite3")
 
-if(!db) return Database.SqliteError("test1", "test2")
+if(!db) return Database.SqliteError("run '.use' for start use the database", null).toString()
 
 var methods = {
   get: require("./lib/get.js"),
