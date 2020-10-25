@@ -159,11 +159,12 @@ Object.keys(functions).map(x => this[x] = functions[x])
 }
 
 function arbitrate(method, params) {
+
+if(params.ops) {
+
   let options = {
     table: params.ops.table || "main"
   };
-
-let db = params.db || require("better-sqlite3")("db.sqlite")
 
   if (params.ops.target && params.ops.target[0] === ".")
     params.ops.target = params.ops.target.slice(1);
@@ -173,6 +174,9 @@ let db = params.db || require("better-sqlite3")("db.sqlite")
     params.id = unparsed.shift();
     params.ops.target = unparsed.join(".");
   }
+}
+
+let db = params.db || require("better-sqlite3")("db.sqlite")
 
   return methods[method](db, params, options);
 }
