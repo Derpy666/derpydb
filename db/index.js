@@ -27,8 +27,7 @@ var methods = {
   createTable: require("./lib/createTable.js")
 };
 
-module.exports = {
-Database: function(path) {
+module.exports = function(path) {
 if(!path) return null
 let db = require("better-sqlite3")(path)
 
@@ -153,13 +152,10 @@ let functions = {
   createTable: function(ops) {
     return arbitrate("createTable", { ops: ops || {}, db: db});
   }
-};
+}
 
 Object.keys(functions).map(x => this[x] = functions[x])
 
-},
-
-  version: require("../package.json").version
 }
 
 function arbitrate(method, params) {
