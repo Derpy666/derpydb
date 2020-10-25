@@ -158,10 +158,9 @@ let functions = {
 if(!path) return null
 let db = require("better-sqlite3")(path)
 
-let ops = {}
-ops.db = db
+let tables = (ops) => arbitrate("tables", { ops: ops || {}, db: db });
 
-this.tables = (ops) => arbitrate("tables", { ops: ops || {} });
+this.tables = tables;
 
 },
 
@@ -175,7 +174,7 @@ function arbitrate(method, params) {
     table: params.ops.table || "main"
   };
 
-let db = params.ops.db || require("better-sqlite3")("db.sqlite")
+let db = params.db || require("better-sqlite3")("db.sqlite")
 
   if (params.ops.target && params.ops.target[0] === ".")
     params.ops.target = params.ops.target.slice(1);
