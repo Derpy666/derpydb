@@ -22,19 +22,15 @@ let backup = `${db.name.split(".")[0]}-${getDate(new Date())}.sqlite`
 
 fs.copyFileSync(db.name, `db/backups/${backup}`)
 
-let DatabaseName = db.name
-
 db.close()
 
-deleteFile(DatabaseName)
+deleteFile(db.name)
 
-fs.copyFileSync(`db/backups/${path}`,DatabaseName)
+fs.copyFileSync(`db/backups/${path}`,db.name)
 
 deleteFile(`db/backups/${path}`)
 
-let Database = require("better-sqlite3")
-
-db = Database(DatabaseName)
+new require("../../db/index.js")(db.name)
 
 return true
 };
