@@ -22,6 +22,7 @@ var methods = {
   backups: require("./lib/backups.js"),
   download: require("./lib/download.js"),
   load: require("./lib/load.js"),
+  use: require("./lib/use.js"),
   getTable: require("./lib/getTable.js"),
   deleteTable: require("./lib/deleteTable.js"),
   createTable: require("./lib/createTable.js")
@@ -115,6 +116,11 @@ let functions = {
 
   tables: function(ops) {
     return arbitrate("tables", { ops: ops || {}, db: db });
+  },
+
+  use: function(path, ops) {
+    if (!path) throw new TypeError("No path specified.");
+    return arbitrate("use", { path: path, ops: ops || {},db:db });
   },
 
   backup: function(ops) {
