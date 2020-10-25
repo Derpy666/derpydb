@@ -178,5 +178,5 @@ if(params.ops) {
 
 let db = params.db || require("better-sqlite3")("db.sqlite")
 
-  return methods[method](db, params, options);
+  return methods[method](db, params, options || {});
 }
