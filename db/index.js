@@ -160,7 +160,7 @@ let db = require("better-sqlite3")(path)
 
 this.get = functions.get
 this.set = functions.set
-this.tables ° functions.tables
+this.tables = functions.tables
 },
 
   version: require("../package.json").version
