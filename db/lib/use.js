@@ -1,11 +1,9 @@
 module.exports = function(db, params, options) {
-  
-const Database = require("better-sqlite3")
 
 db.close()
 
-console.log(params.path)
+let Dadabase = require("../../db/index.js")
 
-return require("../../db/index.js")(params.path)
+return new Database(params.path)
 
 };
