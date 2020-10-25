@@ -160,7 +160,9 @@ let functions = {
   }
 }
 
-Object.keys(functions).map(x => this[x] = functions[x])
+// Object.keys(functions).map(x => this[x] = functions[x])
+
+this = functions;
 
 }
 
