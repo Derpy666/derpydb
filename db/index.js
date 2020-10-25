@@ -114,22 +114,16 @@ let functions = {
     return arbitrate("deleteAll", { ops: ops || {}, db: db });
   },
 
-  tables: function(ops) {
-    return arbitrate("tables", { ops: ops || {}, db: db });
-  },
+  tables: return arbitrate("tables", { db: db }),
 
   use: function(path, ops) {
     if (!path) throw new TypeError("No path specified.");
     return arbitrate("use", { path: path, ops: ops || {},db:db });
   },
 
-  backup: function(ops) {
-    return arbitrate("backup", { ops: ops || {}, db: db });
-  },
+  backup: return arbitrate("backup", { db: db }),
 
-  backups: function(ops) {
-    return arbitrate("backups", { ops: ops || {}, db: db });
-  },
+  backups: return arbitrate("backups", { db: db }),
 
   download: function(date, ops) {
   if(!date) throw new TypeError("No date specified. (DD-MM-HH-MM-SS)");
