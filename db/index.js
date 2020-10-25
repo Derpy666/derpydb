@@ -1,10 +1,6 @@
 let Database = require("better-sqlite3")
 
-//let db;
-
-//if(!db) db = Database("db.sqlite")
-
-var methods = {
+let methods = {
   get: require("./lib/get.js"),
   set: require("./lib/set.js"),
   has: require("./lib/has.js"),
@@ -114,16 +110,22 @@ let functions = {
     return arbitrate("deleteAll", { ops: ops || {}, db: db });
   },
 
-  tables: arbitrate("tables", { db: db }),
+  tables: function(ops) {
+    return arbitrate("tables", { ops: ops || {}, db: db });
+  },
 
   use: function(path, ops) {
     if (!path) throw new TypeError("No path specified.");
     return arbitrate("use", { path: path, ops: ops || {},db:db });
   },
 
-  backup: arbitrate("backup", { db: db }),
+  backup: function(ops) {
+    return arbitrate("backup", { ops: ops || {}, db: db });
+  },
 
-  backups: arbitrate("backups", { db: db }),
+  backups: function(ops) {
+    return arbitrate("backups", { ops: ops || {}, db: db });
+  },
 
   download: function(date, ops) {
   if(!date) throw new TypeError("No date specified. (DD-MM-HH-MM-SS)");
@@ -160,8 +162,6 @@ Object.keys(functions).map(x => this[x] = functions[x])
 
 function arbitrate(method, params) {
 
-if(params.ops) {
-
   let options = {
     table: params.ops.table || "main"
   };
@@ -175,11 +175,8 @@ if(params.ops) {
     params.ops.target = unparsed.join(".");
   }
 
-return methods[method](db, params, options);
-} else {
-
 let db = params.db || require("better-sqlite3")("db.sqlite")
 
-  return methods[method](db, params, {});
-}
+return methods[method](db, params, options);
+
 }
