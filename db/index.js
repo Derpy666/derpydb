@@ -174,9 +174,12 @@ if(params.ops) {
     params.id = unparsed.shift();
     params.ops.target = unparsed.join(".");
   }
-}
+
+return methods[method](db, params, options);
+} else {
 
 let db = params.db || require("better-sqlite3")("db.sqlite")
 
-  return methods[method](db, params, options ? options : null);
+  return methods[method](db, params, {});
+}
 }
