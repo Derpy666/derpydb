@@ -158,7 +158,9 @@ let functions = {
 if(!path) return null
 let db = require("better-sqlite3")(path)
 
-Object.keys(functions).map(x => this[x] = functions[x])
+this.get = functions.get
+this.set = functions.set
+this.tables ° functions.tables
 },
 
   version: require("../package.json").version
