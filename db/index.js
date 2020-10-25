@@ -27,7 +27,7 @@ var methods = {
   createTable: require("./lib/createTable.js")
 };
 
-module.exports = {
+let functions = {
   get: function(key, ops) {
     if (!key) throw new TypeError("No key specified.");
     return arbitrate("get", { id: key, ops: ops || {} });
@@ -154,10 +154,17 @@ module.exports = {
     return arbitrate("use", { path: p, ops: ops || {} });
   },
 
-  Database: db,
+  Database: function(path) {
+if(!path) return null
+let db = require("better-sqlite3")(path)
+
+Object.keys(functions).map(x => this[x] = functions[x])
+},
 
   version: require("../package.json").version
 };
+
+module.exports = functions;
 
 function arbitrate(method, params) {
   let options = {
