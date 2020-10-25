@@ -151,6 +151,8 @@ let functions = {
     return arbitrate("getTable", { ops: ops || {} , db: db});
   },
 
+  db: db,
+
   createTable: function(ops) {
     return arbitrate("createTable", { ops: ops || {}, db: db});
   }
