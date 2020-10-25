@@ -28,7 +28,7 @@ var methods = {
 };
 
 let functions = {
-  get: function(key, ops) {
+  /*get: function(key, ops) {
     if (!key) throw new TypeError("No key specified.");
     return arbitrate("get", { id: key, ops: ops || {} });
   },
@@ -152,16 +152,17 @@ let functions = {
   use: function(p, ops) {
     if(!p) throw new TypeError("No path specified.");
     return arbitrate("use", { path: p, ops: ops || {} });
-  },
+  },*/
 
   Database: function(path) {
 if(!path) return null
 let db = require("better-sqlite3")(path)
 
-this.get = functions.get
-this.set = functions.set
-this.tables = functions.tables
-return this
+let ops = {}
+ops.db = db
+
+this.tables = (ops) => arbitrate("tables", { ops: ops || {} });
+
 },
 
   version: require("../package.json").version
@@ -173,6 +174,8 @@ function arbitrate(method, params) {
   let options = {
     table: params.ops.table || "main"
   };
+
+let db = params.ops.db || require("better-sqlite3")("db.sqlite")
 
   if (params.ops.target && params.ops.target[0] === ".")
     params.ops.target = params.ops.target.slice(1);
