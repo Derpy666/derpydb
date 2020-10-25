@@ -13,7 +13,8 @@ bot.login(config.token);
 bot.commands = new Collection();
 bot.aliases = new Collection();
 
-bot.db = require("./db/index.js")("db.sqlite")
+bot.db = new require("./db/index.js").Database("db
+sqlite")
 
 process.on("unhandledRejection", error => {
   console.error("Uncaught Promise Rejection", error);
