@@ -1,8 +1,8 @@
 let Database = require("better-sqlite3")
 
-let db;
+//let db;
 
-if(!db) db = Database("db.sqlite")
+//if(!db) db = Database("db.sqlite")
 
 var methods = {
   get: require("./lib/get.js"),
