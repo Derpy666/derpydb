@@ -12,8 +12,10 @@ function deleteFile(file) {
 return fs.unlinkSync(file)
 }
 
+let dbName = db.name.split(".")
+
 let path = db.name
-let backup = `${db.name.split(".")[0]}-${getDate(new Date())}.sqlite`
+let backup = `${db.name.split(".")[dbName.length - 1]}-${getDate(new Date())}.sqlite`
 
 let files = fs.readdirSync("./db/backups/")
 
