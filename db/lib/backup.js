@@ -27,7 +27,7 @@ deleteFile(`db/backups/${oldestFile}`)
 deleted = `${oldestFile} has been deleted!`
 } 
 
-fs.copyFileSync(file, `db/backups/${backup}`)
+fs.copyFileSync(`${file}.sqlite`, `db/backups/${backup}`)
 
 return `New Backup created (/db/backups/${backup})
 
