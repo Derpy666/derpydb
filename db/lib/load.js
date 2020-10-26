@@ -18,7 +18,9 @@ let file = fs.existsSync("./db/backups/" + path)
 
 if(file === false) return false;
 
-let backup = `${db.name.split(".")[0]}-${getDate(new Date())}.sqlite`
+let dbName = db.name.split(".")
+
+let backup = `${db.name.split(".")[dbName.length - 1]}-${getDate(new Date())}.sqlite`
 
 fs.copyFileSync(db.name, `db/backups/${backup}`)
 
@@ -32,7 +34,7 @@ deleteFile(`db/backups/${path}`)
 
 let Database = require("../../db/index.js")
 
-db = new Database(`./${db.name}`)
+db = new Database(db.name)
 
 return db
 };
