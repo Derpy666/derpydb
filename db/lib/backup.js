@@ -13,7 +13,8 @@ return fs.unlinkSync(file)
 }
 
 let path = db.name
-let backup = `${db.name.split(".").reverse()[1].startsWith("/") ? db.name.split(".").reverse()[1].slice(1) : db.name.split(".").reverse()[1]}-${getDate(new Date())}.sqlite`
+let name = db.name.split(".").reverse()[1]
+let backup = `${name.startsWith("/") ? name.slice(1) : name}-${getDate(new Date())}.sqlite`
 
 let files = fs.readdirSync("./db/backups/")
 
