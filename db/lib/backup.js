@@ -14,7 +14,8 @@ return fs.unlinkSync(file)
 
 let path = db.name
 let name = db.name.split(".").reverse()[1]
-let backup = `${name.startsWith("/") ? name.slice(1) : name}-${getDate(new Date())}.sqlite`
+let file = name.startsWith("/") ? name.slice(1) : name
+let backup = `${file}-${getDate(new Date())}.sqlite`
 
 let files = fs.readdirSync("./db/backups/")
 
@@ -26,7 +27,7 @@ deleteFile(`db/backups/${oldestFile}`)
 deleted = `${oldestFile} has been deleted!`
 } 
 
-fs.copyFileSync(db.name, `db/backups/${backup}`)
+fs.copyFileSync(file, `db/backups/${backup}`)
 
 return `New Backup created (/db/backups/${backup})
 
