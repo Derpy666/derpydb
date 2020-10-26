@@ -32,7 +32,7 @@ deleteFile(`db/backups/${path}`)
 
 let Database = require("../../db/index.js")
 
-new Database(db.name)
+db = new Database(db.name)
 
-return true
+return db
 };
