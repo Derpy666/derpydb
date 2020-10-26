@@ -12,7 +12,7 @@ function deleteFile(file) {
 return fs.unlinkSync(file)
 }
 
-const path = `${String(db.name).split(".")[0]}-${params.date}.sqlite`
+const path = `${db.name.split(".").reverse()[1]}-${params.date}.sqlite`
 
 let file = fs.existsSync("./db/backups/" + path)
 
