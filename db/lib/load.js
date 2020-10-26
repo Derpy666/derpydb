@@ -30,7 +30,9 @@ fs.copyFileSync(`db/backups/${path}`,db.name)
 
 deleteFile(`db/backups/${path}`)
 
-new require("../../db/index.js")(db.name)
+let Database = require("../../db/index.js")
+
+new Database(db.name)
 
 return true
 };
