@@ -26,7 +26,7 @@ let methods = {
 
 module.exports = function(path) {
 if(!path) return null
-let db = require("better-sqlite3")(path)
+let db = new Database(path)
 
 let functions = {
   get: function(key, ops) {
@@ -65,18 +65,6 @@ let functions = {
     return arbitrate("startsWith", { id: key, ops: ops || {}, db:db });
   },
 
-  push: function(key, value, ops) {
-    if (!key) throw new TypeError("No key specified.");
-    if (!value && value != 0)
-      throw new TypeError("Must specify value to push.");
-    return arbitrate("push", {
-      stringify: true,
-      id: key,
-      data: value,
-      ops: ops || {}, db: db
-    });
-  },
-
   add: function(key, value, ops) {
     if (!key) throw new TypeError("No key specified.");
     if (isNaN(value)) throw new TypeError("Must specify value to add.");
@@ -112,29 +100,6 @@ let functions = {
 
   tables: function(ops) {
     return arbitrate("tables", { ops: ops || {}, db: db });
-  },
-
-  use: function(path, ops) {
-    if (!path) throw new TypeError("No path specified.");
-    return arbitrate("use", { path: path, ops: ops || {},db:db });
-  },
-
-  backup: function(ops) {
-    return arbitrate("backup", { ops: ops || {}, db: db });
-  },
-
-  backups: function(ops) {
-    return arbitrate("backups", { ops: ops || {}, db: db });
-  },
-
-  download: function(date, ops) {
-  if(!date) throw new TypeError("No date specified. (DD-MM-HH-MM-SS)");
-    return arbitrate("download", { date: date, ops: ops || {}, db: db });
-  },
-
-  load: function(date, ops) {
-  if(!date) throw new TypeError("No date specified. (DD-MM-HH-MM-SS)");
-    return arbitrate("load", { date: date, ops: ops || {}, db: db });
   },
 
   top: function(target, num, ops) {
