@@ -19,7 +19,7 @@ let methods = {
 };
 
 module.exports = function(path) {
-if(!path) return null
+if(!path) path = "db.sqlite"
 let db = new Database(path)
 
 let functions = {
@@ -136,7 +136,7 @@ function arbitrate(method, params) {
     params.ops.target = unparsed.join(".");
   }
 
-let db = params.db || new Database("db.sqlite")
+let db = params.db
 
 return methods[method](db, params, options);
 
