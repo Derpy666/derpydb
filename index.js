@@ -81,7 +81,7 @@ let functions = {
   },
 
   all: function(ops) {
-    return arbitrate("getAll", { ops: ops || {} });
+    return arbitrate("getAll", { ops: ops || {}, db:db });
   },
 
   fetchAll: function(ops) {
