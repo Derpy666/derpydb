@@ -142,7 +142,7 @@ function arbitrate(method, params) {
     params.ops.target = unparsed.join(".");
   }
 
-let db = params.db || require("better-sqlite3")("db.sqlite")
+let db = params.db || new Database("db.sqlite")
 
 return methods[method](db, params, options);
 
