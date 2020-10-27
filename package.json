@@ -1,14 +1,10 @@
 {
-  "name": "test",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "author": "",
-  "license": "ISC",
+  "name": "derpydb",
+  "version": "0.0.1",
+  "description": "DerpyDB are usefull database for create database with some collums, some tables and more anazing function for easier for your work, if you want contact me come to Discord: Derpy#6666",
+  "main": "index.js",
+  "author": "Derpy666",
+  "license": "MIT",
   "dependencies": {
     "better-sqlite3": "^7.1.1",
     "date-time-format-timezone": "^1.0.22",
