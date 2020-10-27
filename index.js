@@ -8,6 +8,7 @@ let methods = {
   startsWith: require("./lib/startsWith.js"),
   add: require("./lib/add.js"),
   remove: require("./lib/remove.js"),
+  push: require("./lib/push.js"),
   delete: require("./lib/delete.js"),
   getAll: require("./lib/getAll.js"),
   deleteAll: require("./lib/deleteAll.js"),
@@ -69,6 +70,12 @@ let functions = {
     if (!key) throw new TypeError("No key specified.");
     if (isNaN(value)) throw new TypeError("Must specify value to remove.");
     return arbitrate("remove", { id: key, data: value, ops: ops || {}, db: db });
+  },
+
+  push: function(key, value, ops) {
+    if (!key) throw new TypeError("No key specified.");
+    if (!value) throw new TypeError("Must specify value to remove.");
+    return arbitrate("push", { id: key, data: value, ops: ops || {}, db: db });
   },
 
   delete: function(key, ops) {
