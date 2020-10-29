@@ -9,6 +9,7 @@ let methods = {
   add: require("./lib/add.js"),
   remove: require("./lib/remove.js"),
   push: require("./lib/push.js"),
+  pull: require("./lib/pull.js"),
   delete: require("./lib/delete.js"),
   getAll: require("./lib/getAll.js"),
   deleteAll: require("./lib/deleteAll.js"),
@@ -74,8 +75,14 @@ let functions = {
 
   push: function(key, value, ops) {
     if (!key) throw new TypeError("No key specified.");
-    if (!value) throw new TypeError("Must specify value to remove.");
+    if (!value) throw new TypeError("Must specify value to push.");
     return arbitrate("push", { id: key, data: value, ops: ops || {}, db: db });
+  },
+
+  pull: function(key, value, ops) {
+    if (!key) throw new TypeError("No key specified.");
+    if (!value) throw new TypeError("Must specify value to pull.");
+    return arbitrate("pull", { id: key, data: value, ops: ops || {}, db: db });
   },
 
   delete: function(key, ops) {
