@@ -25,6 +25,10 @@ if(!path) path = "db.sqlite"
 let db = new Database(path)
 
 let functions = {
+  createTable: function(ops) {
+    return arbitrate("createTable", { ops: ops || {}, db: db});
+  },
+  
   get: function(key, ops) {
     if (!key) throw new TypeError("No key specified.");
     return arbitrate("get", { id: key, ops: ops || {},db:db });
@@ -110,12 +114,6 @@ let functions = {
     return arbitrate("tables", { ops: ops || {}, db: db });
   },
 
-  top: function(target, num, ops) {
-    if (!target) throw new TypeError("No target top specified.");
-    if (!num) throw new TypeError("No top number specified.");
-    return arbitrate("top", { target: target, num: num, ops: ops || {} , db: db});
-  },
-
   deleteTable: function(ops) {
     return arbitrate("deleteTable", { ops: ops || {} , db: db});
   },
@@ -124,11 +122,13 @@ let functions = {
     return arbitrate("getTable", { ops: ops || {} , db: db});
   },
 
-  db: db,
+  top: function(target, num, ops) {
+    if (!target) throw new TypeError("No target top specified.");
+    if (!num) throw new TypeError("No top number specified.");
+    return arbitrate("top", { target: target, num: num, ops: ops || {} , db: db});
+  },
 
-  createTable: function(ops) {
-    return arbitrate("createTable", { ops: ops || {}, db: db});
-  }
+  db: db
 }
 
 Object.keys(functions).map(x => this[x] = functions[x])
@@ -138,8 +138,10 @@ Object.keys(functions).map(x => this[x] = functions[x])
 function arbitrate(method, params) {
 
   let options = {
-    table: params.ops.table || "main"
+    table: params.ops.table
   };
+
+  if(options.table == undefined) throw ReferenceError("You need specific an table")
 
   if (params.ops.target && params.ops.target[0] === ".")
     params.ops.target = params.ops.target.slice(1);
