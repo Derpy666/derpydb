@@ -30,18 +30,18 @@ let functions = {
   },
   
   get: function(key, ops) {
-    if (!key) throw new TypeError("No key specified.");
+    if (!key) throw new TypeError("You must provide a key.");
     return arbitrate("get", { id: key, ops: ops || {},db:db });
   },
 
   fetch: function(key, ops) {
-    if (!key) throw new TypeError("No key specified.");
+    if (!key) throw new TypeError("You must provide a key.");
     return arbitrate("get", { id: key, ops: ops || {},db:db });
   },
 
   set: function(key, value, ops) {
-    if (!key) throw new TypeError("No key specified.");
-    if (!value && value != 0) throw new TypeError("No value specified.");
+    if (!key) throw new TypeError("You must provide a key.");
+    if (!value && value != 0) throw new TypeError("You must provide a value to set.");
     return arbitrate("set", {
       stringify: true,
       id: key,
@@ -51,46 +51,46 @@ let functions = {
   },
 
   has: function(key, ops) {
-    if (!key) throw new TypeError("No key specified.");
+    if (!key) throw new TypeError("You must provide a key.");
     return arbitrate("has", { id: key, ops: ops || {}, db: db });
   },
 
   type: function(key, ops) {
-    if (!key) throw new TypeError("No key specified.");
+    if (!key) throw new TypeError("You must provide a key.");
     return arbitrate("type", { id: key, ops: ops || {}, db: db });
   },
 
   startsWith: function(key, ops) {
-    if (!key) throw new TypeError("No key specified.");
+    if (!key) throw new TypeError("You must provide a key.");
     return arbitrate("startsWith", { id: key, ops: ops || {}, db:db });
   },
 
   add: function(key, value, ops) {
-    if (!key) throw new TypeError("No key specified.");
-    if (isNaN(value)) throw new TypeError("Must specify value to add.");
+    if (!key) throw new TypeError("You must provide a key.");
+    if (isNaN(value)) throw new TypeError("You must provide a value to add.");
     return arbitrate("add", { id: key, data: value, ops: ops || {}, db: db });
   },
 
   remove: function(key, value, ops) {
-    if (!key) throw new TypeError("No key specified.");
-    if (isNaN(value)) throw new TypeError("Must specify value to remove.");
+    if (!key) throw new TypeError("You must provide a key.");
+    if (isNaN(value)) throw new TypeError("You must provide a value to remove.");
     return arbitrate("remove", { id: key, data: value, ops: ops || {}, db: db });
   },
 
   push: function(key, value, ops) {
-    if (!key) throw new TypeError("No key specified.");
-    if (!value) throw new TypeError("Must specify value to push.");
+    if (!key) throw new TypeError("You must provide a key.");
+    if (!value) throw new TypeError("You must provide value to push.");
     return arbitrate("push", { id: key, data: value, ops: ops || {}, db: db });
   },
 
   pull: function(key, value, ops) {
-    if (!key) throw new TypeError("No key specified.");
-    if (!value) throw new TypeError("Must specify value to pull.");
+    if (!key) throw new TypeError("You must provide a key.");
+    if (!value) throw new TypeError("You must provide value to pull.");
     return arbitrate("pull", { id: key, data: value, ops: ops || {}, db: db });
   },
 
   delete: function(key, ops) {
-    if (!key) throw new TypeError("No key specified.");
+    if (!key) throw new TypeError("You must provide a key.");
     return arbitrate("delete", { id: key, ops: ops || {}, db: db });
   },
 
@@ -123,8 +123,8 @@ let functions = {
   },
 
   top: function(target, num, ops) {
-    if (!target) throw new TypeError("No target top specified.");
-    if (!num) throw new TypeError("No top number specified.");
+    if (!target) throw new TypeError("You must provide target top.");
+    if (!num) throw new TypeError("You must provide a top number.");
     return arbitrate("top", { target: target, num: num, ops: ops || {} , db: db});
   },
 
@@ -144,7 +144,7 @@ let options;
     table: params.ops.table
   };
 
-  if(options.table == undefined) throw ReferenceError("You need specific an table")
+  if(options.table == undefined) throw ReferenceError("You must provide a table")
 
   if (params.ops.target && params.ops.target[0] === ".")
     params.ops.target = params.ops.target.slice(1);
