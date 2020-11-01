@@ -110,8 +110,8 @@ let functions = {
     return arbitrate("deleteAll", { ops: ops || {}, db: db });
   },
 
-  tables: function(ops) {
-    return arbitrate("tables", { ops: ops || {}, db: db });
+  tables: function() {
+    return arbitrate("tables", { db: db });
   },
 
   deleteTable: function(ops) {
@@ -137,7 +137,10 @@ Object.keys(functions).map(x => this[x] = functions[x])
 
 function arbitrate(method, params) {
 
-  let options = {
+let options;
+
+  if(params.ops) {
+  options = {
     table: params.ops.table
   };
 
@@ -151,6 +154,7 @@ function arbitrate(method, params) {
     params.id = unparsed.shift();
     params.ops.target = unparsed.join(".");
   }
+}
 
 let db = params.db
 
