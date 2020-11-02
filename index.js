@@ -128,7 +128,9 @@ let functions = {
     return arbitrate("top", { target: target, num: num, ops: ops || {} , db: db});
   },
 
-  db: db
+  db: db,
+
+  version: require("./package.json").version
 }
 
 Object.keys(functions).map(x => this[x] = functions[x])
