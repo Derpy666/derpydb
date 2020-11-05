@@ -1,6 +1,6 @@
 {
   "name": "derpydb",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "DerpyDB are useful database for create database with some collums, some tables and more amazing function for easier for your work, if you want contact me come to Discord: Derpy#6666",
   "main": "index.js",
   "keywords": ["better-sqlite3", "database", "db", "derpy"],
