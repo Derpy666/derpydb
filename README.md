@@ -19,11 +19,10 @@ const db = new Database('db.sqlite');
 Get the data from given id or id and target
 
 - `options.table`: specific table name to create (default: `main`).
-- `options.id`: specific a id creation to be (default: `TEXT`).
 - `options.whatyouwant`: here you can specific what you want: `age, lastname, fullname...`
 
 ```js
-db.createTable({ table: 'players', id: 'TEXT', age: 'INT' }); // true
+db.createTable({ table: 'players', age: 'INT', list: "TEXT" }); // true
 ```
 
 ### .get(*id*, [*options*])
@@ -187,27 +186,6 @@ get specific table information
 db.getTable({ table: 'players' }); // { table: 'players', id: 'TEXT', age: 'INT' }
 ```
 
-### .top(*id*, *top num*, [*options*])
-
-get top of specific target in specific table with the specific top
-
-- `options.table`: specific table in the database (default: `null`).
-
-```js
-db.top('coins', 10, { table: 'players' }); 
-/* [
-{ id: 'player', coins: 18 },
-{ id: 'player2', coins: 16 },
-{ id: 'player3', coins: 14 }
-{ id: 'player4', coins: 12 }
-{ id: 'player5', coins: 10 }
-{ id: 'player6', coins: 8 }
-{ id: 'player7', coins: 6 }
-{ id: 'player8', coins: 4 }
-{ id: 'player9', coins: 2 }
-{ id: 'player10', coins: 0 }
-]*/
-```
 ### .db
 
 run code through sqlite
