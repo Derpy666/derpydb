@@ -14,7 +14,6 @@ let methods = {
   getAll: require("./lib/getAll.js"),
   deleteAll: require("./lib/deleteAll.js"),
   tables: require("./lib/tables.js"),
-  top: require("./lib/top.js"),
   getTable: require("./lib/getTable.js"),
   deleteTable: require("./lib/deleteTable.js"),
   createTable: require("./lib/createTable.js")
@@ -120,12 +119,6 @@ let functions = {
 
   getTable: function(ops) {
     return arbitrate("getTable", { ops: ops || {} , db: db});
-  },
-
-  top: function(target, num, ops) {
-    if (!target) throw new TypeError("You must provide target top.");
-    if (!num) throw new TypeError("You must provide a top number.");
-    return arbitrate("top", { target: target, num: num, ops: ops || {} , db: db});
   },
 
   db: db,
