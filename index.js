@@ -141,12 +141,14 @@ function arbitrate(method, params) {
 
 let options;
 
+let db = params.db
+
   if(params.ops) {
   options = {
-    table: params.ops.table
+    table: params.ops.table || "main"
   };
 
-  if(options.table == undefined) throw ReferenceError("You must provide a table")
+if(options.table == "main") db.prepare(`CREATE TABLE IF NOT EXISTS main (id TEXT, value TEXT)`).run();
 
   if (params.ops.target && params.ops.target[0] === ".")
     params.ops.target = params.ops.target.slice(1);
@@ -157,8 +159,6 @@ let options;
     params.ops.target = unparsed.join(".");
   }
 }
-
-let db = params.db
 
 return methods[method](db, params, options);
 
