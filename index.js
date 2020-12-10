@@ -16,6 +16,7 @@ let methods = {
   tables: require("./lib/tables.js"),
   getTable: require("./lib/getTable.js"),
   deleteTable: require("./lib/deleteTable.js"),
+  editTable: require("./lib/editTable.js"),
   createTable: require("./lib/createTable.js")
 };
 
@@ -115,6 +116,11 @@ let functions = {
 
   deleteTable: function(ops) {
     return arbitrate("deleteTable", { ops: ops || {} , db: db});
+  },
+
+  editTable: function(target, ops) {
+    if(!target) throw new TypeError("You must provide table to edit.");
+    return arbitrate("editTable", { table: target, ops: ops || {} , db: db});
   },
 
   getTable: function(ops) {

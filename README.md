@@ -176,6 +176,17 @@ delete specific table
 db.deleteTable({ table: 'players' }); // true
 ```
 
+### .editTable(table, [*options*])
+
+edit specific old table to new data
+
+- `options.table`: specific table name to create (default: `main`).
+- `options.whatyouwant`: here you can specific what you want: `age, lastname, fullname...`
+
+```js
+db.editTable('players'{ table: 'peoples', id: 'TEXT', value: 'INT' }); // true
+```
+
 ### .getTable([*options*])
 
 get specific table information
