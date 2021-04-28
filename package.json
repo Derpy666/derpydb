@@ -3,7 +3,12 @@
   "version": "0.2.6",
   "description": "DerpyDB are useful database for create database with some collums, some tables and more amazing function for easier for your work, if you want contact me come to Discord: Derpy#6666",
   "main": "index.js",
-  "keywords": ["better-sqlite3", "database", "db", "derpy"],
+  "keywords": [
+    "better-sqlite3",
+    "database",
+    "db",
+    "derpy"
+  ],
   "author": "Derpy666",
   "repository": {
     "type": "git",
@@ -12,6 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "better-sqlite3": "^7.1.1",
-    "lodash": "^4.17.20"
+    "lodash": "^4.17.20",
+    "sync-mysql": "^3.0.1"
   }
 }
