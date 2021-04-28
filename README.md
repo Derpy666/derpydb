@@ -3,12 +3,18 @@
 
 ```js
 const Database = require('derpydb');
-const db = new Database('db.sqlite');
+// SQlite
+const db = new Database({ uri: 'sqlite://db.sqlite' });
+// MySQL
+const db = new Database({ uri: 'mysql://user:pass@host/dbname' });
+
 ```
 
-### new Database(*path*)
+### new Database([*options*])
 
-Creates a new database connection. If the database file doesn't exist, it will create. 
+- `options.uri`: specific uri to connect (default: `sqlite://db.sqlite`).
+
+Creates a new database connection. 
 
 ```js
 const db = new Database('db.sqlite');
@@ -19,10 +25,9 @@ const db = new Database('db.sqlite');
 Get the data from given id or id and target
 
 - `options.table`: specific table name to create (default: `main`).
-- `options.whatyouwant`: here you can specific what you want: `age, lastname, fullname...`
 
 ```js
-db.createTable({ table: 'players', age: 'INT', list: "TEXT" }); // true
+db.createTable({ table: 'players' }); // true
 ```
 
 ### .get(*id*, [*options*])
