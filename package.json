@@ -19,8 +19,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "better-sqlite3": "^7.1.1",
-    "lodash": "^4.17.20",
+    "better-sqlite3": "^7.1.5",
+    "lodash": "^4.17.21",
     "sync-mysql": "^3.0.1"
   }
 }
