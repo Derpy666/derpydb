@@ -182,7 +182,7 @@ return Object({
     return arbitrate("getTable", { ops, db, adapter });
   },
   db,
-  version: '1.0.0'
+  version: require("./package.json").version
 })
 }
 
