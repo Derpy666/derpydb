@@ -1,4 +1,5 @@
 .config
+.gitconfig
 # Databases
 *.sqlite
 
