@@ -178,8 +178,6 @@ return Object({
     return arbitrate("deleteTable", { ops, db, adapter });
   },
 
-
-
   getTable: function(ops = {}) {
     return arbitrate("getTable", { ops, db, adapter });
   },
