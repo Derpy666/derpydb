@@ -219,6 +219,8 @@ const SQLITE = require("better-sqlite3")
 
 let sqlite_db = new SQLITE(params[1])
 
+sqlite_db.uri = ops.uri
+
 return functions(sqlite_db, adapter)
 
 break;
