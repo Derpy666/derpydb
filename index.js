@@ -165,7 +165,7 @@ return Object({
   },
 
   import: function(ops = {}) {
-    if(!ops.from) throw new TypeError("You must use 'from' option (uri value).");
+    if(!ops.from) ops.from = db.name ? `sqlite://${db.name}` : db.options.uri
     if(!ops.to) throw new TypeError("You must use 'to' option (uri value).");
     return arbitrate("import", { ops, db, adapter });
   },
