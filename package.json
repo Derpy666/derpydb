@@ -1,0 +1,58 @@
+{
+  "_from": "derpydb",
+  "_id": "derpydb@0.3.5",
+  "_inBundle": false,
+  "_integrity": "sha512-hDbmW3+4yAYkWEa6iwlImpgu88JNFiOAuoHXBdWRxHTqH6QI8FMLYd8tKP3WX5GpX3zH8h48qcL1lcoqjWSE/A==",
+  "_location": "/derpydb",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "derpydb",
+    "name": "derpydb",
+    "escapedName": "derpydb",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/derpydb/-/derpydb-0.3.5.tgz",
+  "_shasum": "45fa2c457bb78d341ed3ceeb2bf446e0d4ed6bfd",
+  "_spec": "derpydb",
+  "_where": "C:\\Users\\arel1\\OneDrive\\Desktop\\bots\\usim",
+  "author": {
+    "name": "Derpy666"
+  },
+  "bugs": {
+    "url": "https://github.com/Derpy666/derpydb/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "better-sqlite3": "^7.1.5",
+    "lodash": "^4.17.21",
+    "sync-mysql": "^3.0.1"
+  },
+  "deprecated": false,
+  "description": "DerpyDB are useful database for create database with some collums, some tables and more amazing function for easier for your work, if you want contact me come to Discord: Derpy#6666",
+  "homepage": "https://github.com/Derpy666/derpydb#readme",
+  "keywords": [
+    "sql",
+    "sqlite",
+    "mysql",
+    "better-sqlite3",
+    "database",
+    "db",
+    "derpy"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "derpydb",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Derpy666/derpydb.git"
+  },
+  "version": "0.3.5"
+}
