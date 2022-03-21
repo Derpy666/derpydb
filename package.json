@@ -1,6 +1,6 @@
 {
   "name": "derpydb",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "DerpyDB are useful database for create database with some collums, some tables and more amazing function for easier for your work, if you want contact me come to Discord: Derpy#6666",
   "main": "index.js",
   "keywords": [
@@ -19,7 +19,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "better-sqlite3": "^7.1.5",
+    "better-sqlite3": "^7.4.3",
     "lodash": "^4.17.21",
     "sync-mysql": "^3.0.1"
   }
